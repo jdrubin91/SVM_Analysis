@@ -9,6 +9,6 @@ def run(histones,bidirectional,TF,mapped):
             histonelist.append(histones + file1)
 
     for item in histonelist:
-        os.system("bedtools map -a " + TF + " -b " + item + " > " + mapped + item.split('/')[-1])
+        os.system("bedtools map -c 4 -a " + TF + " -b " + item + " > " + mapped + item.split('/')[-1])
     
     os.system("bedtools intersect -a " + TF + " -b " + bidirectional + " > " + mapped + bidirectional.split('/')[-1])
