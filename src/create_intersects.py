@@ -11,4 +11,4 @@ def run(histones,bidirectional,TF,mapped):
     for item in histonelist:
         os.system("bedtools map -c 4 -a " + TF + " -b " + item + " > " + mapped + item.split('/')[-1])
     
-    os.system("bedtools intersect -a " + TF + " -b " + bidirectional + " > " + mapped + bidirectional.split('/')[-1])
+    os.system("bedtools intersect -c -a " + TF + " -b " + bidirectional + " > " + mapped + bidirectional.split('/')[-1])
