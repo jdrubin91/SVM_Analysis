@@ -27,7 +27,7 @@ files = parent_dir(homedir) + '/files/'
 mapped = parent_dir(homedir) + '/mapped/'
 
 #Temp directory
-mapped = parent_dir(homedir) + '/temp/'
+temp = parent_dir(homedir) + '/temp/'
 
 
 def run():

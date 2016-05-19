@@ -2,7 +2,7 @@ __author__ = 'Jonathan Rubin'
 
 import os
 
-def run(histones,bidirectional,bedgraph,TF,mapped):
+def run(histones,bidirectional,TF,mapped):
     histonelist = list()
     for folder in os.listdir(histones):
         for file1 in os.listdir(histones + folder):
