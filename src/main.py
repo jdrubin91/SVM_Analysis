@@ -4,7 +4,7 @@ import os
 import create_intersects
 import create_arrays
 
-bidirectional = '/scratch/Shares/dowell/EMG_out_files/SRR1105737-1_divergent_classifications.bed'
+bidirectional = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/SRR1105737-1_divergent_classifications.bed'
 TF = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/TF_ChIP/SRF-human.bed'
 histones = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/histone_mods/bowtie2/sortedbam/genomecoveragebed/fortdf/'
 
