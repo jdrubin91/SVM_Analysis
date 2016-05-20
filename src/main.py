@@ -41,8 +41,8 @@ def run():
     print "Generating X,Y ..."
     X,Y,feature_names = generate_xy.run(temp)
     print "done\nRunning recursive feature elimination ..."
-    SVM.recursive_feature_elimination(X,Y,figures)
-    print "done\nRunning univariate feature selection ..."
+    #SVM.recursive_feature_elimination(X,Y,figures)
+    #print "done\nRunning univariate feature selection ..."
     SVM.univariate_feature_selection(X,Y,feature_names,figures)
     print "done"
     
