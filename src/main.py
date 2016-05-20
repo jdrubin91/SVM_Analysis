@@ -39,6 +39,6 @@ def run():
     #create_intersects.run(histones,bidirectional,TF,mapped)
     #create_arrays.run(mapped,bidirectional,temp)
     X,Y,feature_names = generate_xy.run(temp)
-    #SVM.recursive_feature_elimination(X,Y,figures)
+    SVM.recursive_feature_elimination(X,Y,figures)
     SVM.univariate_feature_selection(X,Y,feature_names,figures)
     

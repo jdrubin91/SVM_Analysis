@@ -30,3 +30,15 @@ def recursive_feature_elimination(X,Y,directory):
     plt.ylabel("Cross validation score (nb of correct classifications)")
     plt.plot(range(1, len(rfecv.grid_scores_) + 1), rfecv.grid_scores_)
     plt.savefig(directory + 'figure.png')
+    
+def univariate_feature_selection(X,Y,feature_names,directory):
+    ufs = SelectKBest(chi2,k="all").fit(X,Y)
+    
+    #print dir(ufs)
+    outfile = open(directory + 'univariate_feature_selection.txt','w')
+    outlist = list()
+    for i in range(len(feature_names)):
+        outlist.append((feature_names[i],ufs.scores_[i],ufs.pvalues_[i]))
+    outlist = sorted(outlist,key=itemgetter(1))
+    for i in range(len(outlist)):
+        outfile.write(outlist[i][0] + '\t' + str(outlist[i][1]) + '\t' + str(outlist[i][2]) + '\n')
