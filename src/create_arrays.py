@@ -24,8 +24,10 @@ def run(mapped,bidirectional,temp):
             l = 0
             with open(mapped + file1) as F:
                 for line in F:
-                    print line.strip().split()[-1]
-                    X[l].append(float(line.strip().split()[-1]))
+                    if line.strip().split()[-1] == '.':
+                        X[l].append(0.0)
+                    else:
+                        X[l].append(float(line.strip().split()[-1]))
                     l += 1
     
     print X[0:5]
