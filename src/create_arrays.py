@@ -17,12 +17,12 @@ def run(mapped,bidirectional,temp):
     for j in range(i):
         X.append([])
     feature_names = list()
-    for files in os.listdir(mapped):
-        if not bidirectional.split('/')[-1] in files:
-            print files
-            feature_names.append(files)
+    for file1 in os.listdir(mapped):
+        if not bidirectional.split('/')[-1] in file1:
+            print file1
+            feature_names.append(file1)
             l = 0
-            with open(mapped + files) as F:
+            with open(mapped + file1) as F:
                 X[l].append(float(line.strip().split()[-1]))
                 l += 1
                 
