@@ -23,8 +23,9 @@ def run(mapped,bidirectional,temp):
             feature_names.append(file1)
             l = 0
             with open(mapped + file1) as F:
-                X[l].append(float(line.strip().split()[-1]))
-                l += 1
+                for line in F:
+                    X[l].append(float(line.strip().split()[-1]))
+                    l += 1
     
     print X[0:5]
     outfile = open(temp + 'temp.txt','w')
