@@ -24,6 +24,7 @@ def run(mapped,bidirectional,temp):
             l = 0
             with open(mapped + file1) as F:
                 for line in F:
+                    print line.strip().split()[-1]
                     X[l].append(float(line.strip().split()[-1]))
                     l += 1
     
