@@ -8,7 +8,7 @@ import generate_xy
 import SVM
 
 bidirectional = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/SRR1105737-1_divergent_classifications.bed'
-TF = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/TF_ChIP/SRF-human.bed.cut'
+TF = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/TF_ChIP/'
 histones = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/histone_mods/bowtie2/sortedbam/genomecoveragebed/fortdf/'
 
 
@@ -37,14 +37,16 @@ figures = parent_dir(homedir) + '/figures/'
 
 
 def run():
-    clean_directory.run(mapped)
-    create_intersects.run(histones,bidirectional,TF,mapped)
-    create_arrays.run(mapped,bidirectional,temp)
-    print "Generating X,Y ..."
-    X,Y,feature_names = generate_xy.run(temp)
-    print "done\nRunning recursive feature elimination ..."
-    SVM.recursive_feature_elimination(X,Y,figures)
-    print "done\nRunning univariate feature selection ..."
-    SVM.univariate_feature_selection(X,Y,feature_names,figures)
-    print "done"
+    for TFfile in os.listdir(TF):
+        if 'cut' in TFfile and 'py' not in TFfile:
+            clean_directory.run(mapped)
+            create_intersects.run(histones,bidirectional,TFfile,mapped)
+            create_arrays.run(mapped,bidirectional,temp)
+            print "Generating X,Y ..."
+            X,Y,feature_names = generate_xy.run(temp)
+            #print "done\nRunning recursive feature elimination ..."
+            #SVM.recursive_feature_elimination(X,Y,figures)
+            print "done\nRunning univariate feature selection ..."
+            SVM.univariate_feature_selection(X,Y,feature_names,figures,TFfile)
+            print "done"
     

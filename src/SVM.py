@@ -31,11 +31,11 @@ def recursive_feature_elimination(X,Y,directory):
     plt.plot(range(1, len(rfecv.grid_scores_) + 1), rfecv.grid_scores_)
     plt.savefig(directory + 'figure.png')
     
-def univariate_feature_selection(X,Y,feature_names,directory):
+def univariate_feature_selection(X,Y,feature_names,directory,TF):
     ufs = SelectKBest(chi2,k="all").fit(X,Y)
     
     #print dir(ufs)
-    outfile = open(directory + 'univariate_feature_selection.txt','w')
+    outfile = open(directory + TF + '_ufs.txt','w')
     outlist = list()
     for i in range(len(feature_names)):
         outlist.append((feature_names[i],ufs.scores_[i],ufs.pvalues_[i]))
