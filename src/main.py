@@ -38,7 +38,8 @@ figures = parent_dir(homedir) + '/figures/'
 
 def run():
     for TFfile in os.listdir(TF):
-        if 'cut.sorted' in TFfile and 'py' not in TFfile:
+        if 'cut.sorted' in TFfile:
+            print TFfile
             clean_directory.run(mapped)
             create_intersects.run(histones,bidirectional,TF+TFfile,mapped)
             create_arrays.run(mapped,bidirectional,temp)
