@@ -1,6 +1,7 @@
 __author__ = 'Jonathan Rubin'
 
 import os
+import clean_directory
 import create_intersects
 import create_arrays
 import generate_xy
@@ -36,6 +37,7 @@ figures = parent_dir(homedir) + '/figures/'
 
 
 def run():
+    clean_directory.run(mapped)
     create_intersects.run(histones,bidirectional,TF,mapped)
     create_arrays.run(mapped,bidirectional,temp)
     #print "Generating X,Y ..."

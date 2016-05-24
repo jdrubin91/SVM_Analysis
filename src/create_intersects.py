@@ -5,7 +5,7 @@ import os
 def run(histones,bidirectional,TF,mapped):
     histonelist = list()
     for file1 in os.listdir(histones):
-        if 'absolut' in file1 and 'mp' not in file1 and 'merge'not in file1:
+        if 'absolute' in file1 and 'mp' not in file1 and 'merge'not in file1:
             histonelist.append(histones + file1)
 
     for item in histonelist:
