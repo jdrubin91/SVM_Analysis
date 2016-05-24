@@ -4,4 +4,4 @@ import os
 
 def run(directory):
     for file1 in os.listdir(directory):
-        os.system("rm " + file1)
+        os.system("rm " + directory + file1)
