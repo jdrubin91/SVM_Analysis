@@ -40,7 +40,7 @@ def run():
     for TFfile in os.listdir(TF):
         if 'cut' in TFfile and 'py' not in TFfile:
             clean_directory.run(mapped)
-            create_intersects.run(histones,bidirectional,TFfile,mapped)
+            create_intersects.run(histones,bidirectional,TF+TFfile,mapped)
             create_arrays.run(mapped,bidirectional,temp)
             print "Generating X,Y ..."
             X,Y,feature_names = generate_xy.run(temp)
