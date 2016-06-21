@@ -46,6 +46,6 @@ def run(files,figures):
         ax2.xaxis.set_visible(False)
         ax2.yaxis.set_visible(False)
         colLabels=("TF","S-Score")
-        the_table = ax2.table(cellText=TFs, colLabels=colLabels,loc='center',fontsize=12)
+        the_table = ax2.table(cellText=TFs, colLabels=colLabels,loc='center',fontsize=8)
         plt.savefig(figures + file1.split('.')[0] + '.png')
         plt.close()
