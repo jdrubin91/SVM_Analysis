@@ -53,5 +53,8 @@ figures = parent_dir(homedir) + '/figures/'
 #            SVM.univariate_feature_selection(X,Y,feature_names,figures,TFfile)
 #            print "done"
 def run():
+    print "Intersecting Replicates..."
     intersect_replicates.run(TF,temp)
+    print "done\nCreating SVM files..."
     create_SVM_files.run(temp,files)
+    print "done"
