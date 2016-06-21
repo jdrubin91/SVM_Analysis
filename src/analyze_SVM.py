@@ -35,7 +35,7 @@ def run(files,figures):
             S = ((float(one[i])/pos) + (float(zero[i])/neg))/2
             TFs.append((names[i],S))
         hist = [x[1] for x in TFs]
-        TFs.sort(key=lambda x: x[1])
+        TFs.sort(key=lambda x: x[1], reverse=True)
         
         #Histogram of TRCA - TRDMSO
         F1 = plt.figure()
@@ -46,5 +46,6 @@ def run(files,figures):
         ax2.xaxis.set_visible(False)
         ax2.yaxis.set_visible(False)
         colLabels=("TF","S-Score")
-        the_table = ax2.table(cellText=TFs, colLabels=colLabels,loc='center')
+        the_table = ax2.table(cellText=TFs, colLabels=colLabels,loc='center',fontsize=12)
         plt.savefig(figures + file1.split('.')[0] + '.png')
+        plt.close()
