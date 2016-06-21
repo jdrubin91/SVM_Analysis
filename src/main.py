@@ -9,7 +9,7 @@ import os
 import intersect_replicates
 import create_SVM_files
 
-bidirectional = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/SRR1105737-1_divergent_classifications.bed'
+bidirectional = '/scratch/Shares/dowell/EMG_out_files/human/SRR1552480-1_divergent_classifications.bed'
 TF = '/scratch/Shares/dowell/ENCODE/K562_TFS/'
 histones = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/histone_mods/bowtie2/sortedbam/genomecoveragebed/fortdf/'
 
@@ -56,5 +56,5 @@ def run():
     print "Intersecting Replicates..."
     intersect_replicates.run(TF,temp)
     print "done\nCreating SVM files..."
-    create_SVM_files.run(temp,files)
+    create_SVM_files.run(temp,files,bidirectional)
     print "done"
