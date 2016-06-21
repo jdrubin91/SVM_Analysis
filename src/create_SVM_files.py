@@ -13,4 +13,4 @@ def run(temp,files):
                 trackname.append(file2.split('.')[0])
                 b = pybt.BedTool(temp + file2)
                 a = a.intersect(b,c=True)
-        a.saveas(files + file1,trackname='\t'.join(trackname))
+        a.saveas(files + file1,trackline='\t'.join(trackname))
