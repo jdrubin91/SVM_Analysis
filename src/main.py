@@ -8,6 +8,7 @@ import os
 #import SVM
 import intersect_replicates
 import create_SVM_files
+import analyze_SVM
 
 bidirectional = '/scratch/Shares/dowell/EMG_out_files/human/SRR1552480-1_divergent_classifications.bed'
 TF = '/scratch/Shares/dowell/ENCODE/K562_TFS/'
@@ -53,8 +54,10 @@ figures = parent_dir(homedir) + '/figures/'
 #            SVM.univariate_feature_selection(X,Y,feature_names,figures,TFfile)
 #            print "done"
 def run():
-    print "Intersecting Replicates..."
-    intersect_replicates.run(TF,temp)
-    print "done\nCreating SVM files..."
-    create_SVM_files.run(temp,files,bidirectional)
+    #print "Intersecting Replicates..."
+    #intersect_replicates.run(TF,temp)
+    #print "done\nCreating SVM files..."
+    #create_SVM_files.run(temp,files,bidirectional)
+    print "done\nAnalyzing SVs..."
+    analyze_SVM.run(files,figures)
     print "done"
