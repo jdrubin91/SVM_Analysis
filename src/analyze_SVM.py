@@ -13,7 +13,7 @@ def run(files,figures):
     for file1 in os.listdir(files):
         pos = 0
         neg = 0
-        with open(file1) as F:
+        with open(files + file1) as F:
             names = F.readline().strip().split()
             one = [0] * len(names)
             zero = [0] * len(names)
