@@ -1,11 +1,11 @@
 __author__ = 'Jonathan Rubin'
 
 import os
-import clean_directory
-import create_intersects
-import create_arrays
-import generate_xy
-import SVM
+#import clean_directory
+#import create_intersects
+#import create_arrays
+#import generate_xy
+#import SVM
 import intersect_replicates
 
 bidirectional = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/SRR1105737-1_divergent_classifications.bed'
