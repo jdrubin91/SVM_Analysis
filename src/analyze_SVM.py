@@ -11,6 +11,7 @@ def run(files,figures):
     hist = list()
     TFs = list()
     for file1 in os.listdir(files):
+        print file1
         pos = 0
         neg = 0
         with open(files + file1) as F:
