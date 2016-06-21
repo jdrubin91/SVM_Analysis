@@ -9,8 +9,8 @@ def run(directory,temp):
         for file1 in os.listdir(directory + folder):
             if 'peaks.bed' in file1:
                 replicates.append(directory + folder + '/' + file1)
-        a = pybt.BedTool(replicates[0])
+        a = pybt.BedTool(replicates[0]).cut([0,1,2])
         for i in range(len(replicates)-1):
-            a = a.intersect(pybt.BedTool(replicates[i+1]))
+            a = a.intersect(pybt.BedTool(replicates[i+1]).cut([0,1,2]))
         a.saveas(temp + folder + '.bed')
         
