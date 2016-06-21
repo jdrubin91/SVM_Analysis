@@ -19,16 +19,16 @@ def run(files,figures):
             zero = [0] * len(names)
             for line in F:
                 line = line.strip().split()[3:]
-                if line[0] == '1':
-                    pos += 1.0
-                    for i in range(len(line[1:])):
-                        i = i+1
-                        one[i] += line[i]
-                else:
+                if line[0] == '0':
                     neg += 1.0
                     for i in range(len(line[1:])):
                         i = i+1
-                        zero[i] += abs(line[i]-1)
+                        zero[i] += abs(int(line[i])-1)
+                else:
+                    pos += 1.0
+                    for i in range(len(line[1:])):
+                        i = i+1
+                        one[i] += int(line[i])
         
         for i in range(len(one)):
             S = ((float(one[i])/pos) + (float(zero[i])/neg))/2
