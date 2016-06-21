@@ -6,9 +6,10 @@ import create_intersects
 import create_arrays
 import generate_xy
 import SVM
+import intersect_replicates
 
 bidirectional = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/SRR1105737-1_divergent_classifications.bed'
-TF = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/TF_ChIP/'
+TF = '/scratch/Shares/dowell/ENCODE/K562_TFS/'
 histones = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/histone_mods/bowtie2/sortedbam/genomecoveragebed/fortdf/'
 
 
@@ -36,18 +37,19 @@ temp = parent_dir(homedir) + '/temp/'
 figures = parent_dir(homedir) + '/figures/'
 
 
+#def run():
+#    for TFfile in os.listdir(TF):
+#        if 'cut.sorted' in TFfile:
+#            print TFfile
+#            clean_directory.run(mapped)
+#            create_intersects.run(histones,bidirectional,TF+TFfile,mapped)
+#            create_arrays.run(mapped,bidirectional,temp)
+#            print "Generating X,Y ..."
+#            X,Y,feature_names = generate_xy.run(temp)
+#            #print "done\nRunning recursive feature elimination ..."
+#            #SVM.recursive_feature_elimination(X,Y,figures)
+#            print "done\nRunning univariate feature selection ..."
+#            SVM.univariate_feature_selection(X,Y,feature_names,figures,TFfile)
+#            print "done"
 def run():
-    for TFfile in os.listdir(TF):
-        if 'cut.sorted' in TFfile:
-            print TFfile
-            clean_directory.run(mapped)
-            create_intersects.run(histones,bidirectional,TF+TFfile,mapped)
-            create_arrays.run(mapped,bidirectional,temp)
-            print "Generating X,Y ..."
-            X,Y,feature_names = generate_xy.run(temp)
-            #print "done\nRunning recursive feature elimination ..."
-            #SVM.recursive_feature_elimination(X,Y,figures)
-            print "done\nRunning univariate feature selection ..."
-            SVM.univariate_feature_selection(X,Y,feature_names,figures,TFfile)
-            print "done"
-    
+    intersect_replicates.run(TF,temp)

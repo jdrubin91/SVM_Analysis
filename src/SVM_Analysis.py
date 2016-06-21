@@ -11,8 +11,8 @@ from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2
 
 bidirectional = '/scratch/Shares/dowell/EMG_out_files/SRR639050-1_divergent_classifications.bed'
-TF = '/scratch/Shares/dowell/ENCODE/IMR90/TF_ChIP-Seq/ENCFF002CVI.sorted.bed.cut'
-directory = '/scratch/Shares/dowell/ENCODE/IMR90/'
+TF = '/scratch/Shares/dowell/ENCODE/SVM/IMR90/TF_ChIP-Seq/ENCFF002CVI.sorted.bed.cut'
+directory = '/scratch/Shares/dowell/ENCODE/SVM/IMR90/'
 
 def create_tempfiles():
     #histonelist = list()
