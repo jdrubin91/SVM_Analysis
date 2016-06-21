@@ -11,6 +11,6 @@ def run(directory,temp):
                 replicates.append(directory + folder + '/' + file1)
         a = pybt.BedTool(replicates[0]).cut([0,1,2])
         for i in range(len(replicates)-1):
-            a = a.intersect(pybt.BedTool(replicates[i+1]).cut([0,1,2]))
+            a = a.intersect(pybt.BedTool(replicates[i+1]))
         a.saveas(temp + folder + '.bed')
         
