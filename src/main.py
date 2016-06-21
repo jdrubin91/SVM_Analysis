@@ -7,6 +7,7 @@ import os
 #import generate_xy
 #import SVM
 import intersect_replicates
+import create_SVM_files
 
 bidirectional = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/SRR1105737-1_divergent_classifications.bed'
 TF = '/scratch/Shares/dowell/ENCODE/K562_TFS/'
@@ -53,3 +54,4 @@ figures = parent_dir(homedir) + '/figures/'
 #            print "done"
 def run():
     intersect_replicates.run(TF,temp)
+    create_SVM_files.run(temp,files)
