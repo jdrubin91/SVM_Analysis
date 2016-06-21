@@ -10,8 +10,7 @@ def run(temp,files):
         trackname = list()
         for file2 in os.listdir(temp):
             if file1 not in file2:
-                print file2
                 trackname.append(file2.split('.')[0])
                 b = pybt.BedTool(temp + file2)
                 a = a.intersect(b,c=True)
-        a.saveas(files + file1)
+        a.saveas(files + file1,trackname='\t'.join(trackname))
