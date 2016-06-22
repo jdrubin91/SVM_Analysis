@@ -41,7 +41,7 @@ def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_A
         
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
-            outfile.write(item[0] + "," + str(item[1]))
+            outfile.write(item[0] + "," + str(item[1]) + ",")
         outfile.write('\n')
         
         F1 = plt.figure()
