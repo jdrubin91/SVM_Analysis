@@ -58,6 +58,7 @@ def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_A
         #do the table
         the_table = ax.table(cellText=TFs,colLabels=colLabels,loc='center')
         plt.savefig("table.png")
+        plt.close()
         
        
 if __name__ == "__main__":
