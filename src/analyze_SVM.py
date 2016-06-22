@@ -48,17 +48,28 @@ def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_A
             outfile.write('\n')
             
             
-            
-            F1 = plt.figure()
+            colLabels=("Structure", "Energy", "Density")
+            nrows, ncols = len(TFs)+1, len(TFs)
+            hcell, wcell = 0.3, 1.
+            hpad, wpad = 0, 0    
+            F1=plt.figure(figsize=(ncols*wcell+wpad, nrows*hcell+hpad))
             ax1 = F1.add_subplot(121)
             ax1.hist(hist,50)
-            ax2 = F1.add_subplot(122)
-            ax2.xaxis.set_visible(False)
-            ax2.yaxis.set_visible(False)
-            colLabels=("TF","S-Score")
-            the_table = ax2.table(cellText=TFs[0:27], colLabels=colLabels,loc='center',fontsize=1)
-            plt.savefig(figures + file1.split('.')[0] + '.png')
-            plt.close()
+            ax = F1.add_subplot(122)
+            ax.axis('off')
+            #do the table
+            the_table = ax.table(cellText=TFs,colLabels=colLabels,loc='center')
+            plt.savefig("table.png")
+            
+            #F1 = plt.figure()
+            #
+            #ax2 = F1.add_subplot(122)
+            #ax2.xaxis.set_visible(False)
+            #ax2.yaxis.set_visible(False)
+            #colLabels=("TF","S-Score")
+            #the_table = ax2.table(cellText=TFs[0:27], colLabels=colLabels,loc='center',fontsize=1)
+            #plt.savefig(figures + file1.split('.')[0] + '.png')
+            #plt.close()
 
 if __name__ == "__main__":
     files='C:/cygwin64/home/Jonathan/SVM_Analysis/files/'
