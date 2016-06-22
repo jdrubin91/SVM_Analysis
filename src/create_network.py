@@ -18,10 +18,11 @@ def run(figures):
     
     G = nx.Graph()
     for TF in network:
-        for i in range(0, len(network[TF]), 2):
+        for i in range(0, len(network[TF])-1, 2):
             G.add_edge(TF,network[TF][i],weight=float(network[TF][i+1]))
     
-    edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)]        
+    edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)] 
+    #elarge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] >0.5]       
     pos=nx.spring_layout(G)
     
     plt.figure()
