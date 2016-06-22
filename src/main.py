@@ -9,6 +9,7 @@ import os
 import intersect_replicates
 import create_SVM_files
 import analyze_SVM
+import create_network
 
 bidirectional = '/scratch/Shares/dowell/EMG_out_files/human/SRR1552480-1_divergent_classifications.bed'
 TF = '/scratch/Shares/dowell/ENCODE/K562_TFS/'
@@ -58,6 +59,7 @@ def run():
     #intersect_replicates.run(TF,temp)
     #print "done\nCreating SVM files..."
     #create_SVM_files.run(temp,files,bidirectional)
-    print "done\nAnalyzing SVs..."
-    analyze_SVM.run(files,figures)
-    print "done"
+    #print "done\nAnalyzing SVs..."
+    #analyze_SVM.run(files,figures)
+    print "done\nCreating Network..."
+    create_network.run(figures)
