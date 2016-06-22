@@ -47,6 +47,7 @@ def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_A
                 outfile.write(str(item))
             outfile.write('\n')
             
+            print len(TFs)
             
             colLabels=("TF","S-Score")
             nrows, ncols = len(TFs)+1, len(TFs)
