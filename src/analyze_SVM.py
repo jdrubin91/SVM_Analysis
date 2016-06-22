@@ -16,7 +16,7 @@ def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_A
         pos = 0
         neg = 0
         with open(files + file1) as F:
-            names = F.readline().strip().split()
+            names = F.readline().strip().split()[1:]
             one = [0] * len(names)
             zero = [0] * len(names)
             for line in F:
