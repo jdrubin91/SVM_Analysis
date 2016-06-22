@@ -24,8 +24,9 @@ def run(figures):
     edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)]        
     pos=nx.spring_layout(G)
     
-    plt.figure(1)
-    plt.subplot(211); plt.axis('off')
+    plt.figure()
+    plt.subplot(111)
+    plt.axis('off')
     nx.draw_networkx_nodes(G, pos)
     nx.draw_networkx_edges(G, pos, width=edgewidth,)
     plt.savefig(figures+'network.png')
