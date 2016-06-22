@@ -48,9 +48,9 @@ def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_A
             outfile.write('\n')
             
             
-            colLabels=("Structure", "Energy", "Density")
+            colLabels=("TF","S-Score")
             nrows, ncols = len(TFs)+1, len(TFs)
-            hcell, wcell = 0.3, 1.
+            hcell, wcell = 0.3, 0.5
             hpad, wpad = 0, 0    
             F1=plt.figure(figsize=(ncols*wcell+wpad, nrows*hcell+hpad))
             ax1 = F1.add_subplot(121)
