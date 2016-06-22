@@ -24,14 +24,12 @@ def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_A
                 if line[0] == '0':
                     neg += 1.0
                     for i in range(len(line[1:])):
-                        i = i+1
-                        if int(line[i]) == 0:
+                        if int(line[i+1]) == 0:
                             zero[i] += 1
                 else:
                     pos += 1.0
                     for i in range(len(line[1:])):
-                        i = i+1
-                        if int(line[i]) != 0:
+                        if int(line[i+1]) != 0:
                             one[i] += 1
         
         for i in range(len(one)):
