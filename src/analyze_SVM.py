@@ -47,6 +47,13 @@ def run(files,figures):
             #S = one[i] - N*p*a
             S = 1.0-stats.binom(N,p*a).cdf(one[i])
             #print alist[i], one[i],zero[i],pos,neg,N
+            if alist[i] == 0:
+                alist[i] = 0.002
+                one[i] += 0.001
+            if blist[i] == 0:
+                blist[i] = 0.002
+                zero[i] += 0.001
+                
             S2 = ((float(one[i])/alist[i]) + (float(zero[i])/blist[i]))/2
             TFs.append((names[i],S,S2))
         hist = [x[1] for x in TFs]
