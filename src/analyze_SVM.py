@@ -7,7 +7,7 @@ from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 import matplotlib.pyplot as plt
 
-def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_Analysis/figures/'):
+def run(files,figures):
     outfile = open(figures + 'TFs.txt','w')
     for file1 in os.listdir(files):
         TFs = list()
@@ -38,7 +38,7 @@ def run(files='/home/Jonathan/SVM_Analysis/files/',figures='/home/Jonathan/SVM_A
         hist = [x[1] for x in TFs]
         TFs.sort(key=lambda x: x[1], reverse=True)
         
-        
+        print len(TFs)
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
             outfile.write(item[0] + "," + str(item[1]) + ",")
