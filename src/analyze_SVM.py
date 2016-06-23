@@ -54,7 +54,7 @@ def run(files,figures):
             S = 1.0-stats.binom(N,p*a).cdf(one[i])
             S2 = stats.binom(N,p*(1-a)).cdf(dlist[i])
             S3 = stats.binom(N,(1-p)*a).cdf(clist[i])
-            S4 = stats.binom(N,(1-p)*(1-a)).cdf(zero[i])
+            S4 = 1.0-stats.binom(N,(1-p)*(1-a)).cdf(zero[i])
             #print alist[i], one[i],zero[i],pos,neg,N
             if alist[i] == 0:
                 alist[i] = 0.002
