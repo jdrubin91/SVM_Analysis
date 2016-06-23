@@ -21,7 +21,7 @@ def run(figures):
         for i in range(0, len(network[TF])-1, 2):
             G.add_edge(TF,network[TF][i],weight=float(network[TF][i+1]))
     
-    edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)] 
+    #edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)] 
     elarge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] >0.6]       
     
     pos=nx.spring_layout(G)
@@ -31,5 +31,5 @@ def run(figures):
     plt.subplot(111)
     plt.axis('off')
     nx.draw_networkx_nodes(G, pos)
-    nx.draw_networkx_edges(G, pos, edgelist=elarge, width=edgewidth,)
+    nx.draw_networkx_edges(G, pos, edgelist=elarge)
     plt.savefig(figures+'network.png')
