@@ -9,7 +9,7 @@ def run(temp,files,bidirectional):
         trackname = ['Bidirectional']
         a = a.intersect(pybt.BedTool(bidirectional),c=True)
         for file2 in os.listdir(temp):
-            if file1 not in file2:
+            if file1 != file2:
                 trackname.append(file2.split('.')[0])
                 b = pybt.BedTool(temp + file2)
                 a = a.intersect(b,c=True)
