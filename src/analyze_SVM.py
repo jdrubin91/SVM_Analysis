@@ -21,11 +21,14 @@ def run(files,figures):
             one = [0] * len(names)
             zero = [0] * len(names)
             alist = [0] * len(names)
+            blist = [0] * len(names)
             for line in F:
                 line = line.strip().split()[3:]
                 for i in range(len(line[1:])):
                     if int(line[i+1]) > 0:
                         alist[i] += 1.0
+                    else:
+                        blist[i] += 1.0
                 if line[0] == '0':
                     neg += 1.0
                     for i in range(len(line[1:])):
@@ -44,7 +47,7 @@ def run(files,figures):
             #S = one[i] - N*p*a
             S = 1.0-stats.binom(N,p*a).cdf(one[i])
             #print alist[i], one[i],zero[i],pos,neg,N
-            S2 = ((float(one[i])/pos) + (float(zero[i])/neg))/2
+            S2 = ((float(one[i])/alist[i]) + (float(zero[i])/blist[i]))/2
             TFs.append((names[i],S,S2))
         hist = [x[1] for x in TFs]
         TFs.sort(key=lambda x: x[2], reverse=True)
