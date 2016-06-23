@@ -62,8 +62,8 @@ figures = parent_dir(homedir) + '/figures/'
 def run():
     #print "Intersecting Replicates..."
     #intersect_replicates.run(TF,temp)
-    #print "done\nCreating SVM files..."
-    #create_SVM_files.run(temp,files,bidirectional)
+    print "done\nCreating SVM files..."
+    create_SVM_files.run(temp,files,bidirectional)
     print "done\nAnalyzing SVs..."
     analyze_SVM.run(files,figures)
     print "done\nCreating Network..."
