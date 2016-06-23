@@ -66,7 +66,7 @@ def run(files,figures):
             S5 = ((float(one[i])/alist[i]) + (float(zero[i])/blist[i]))/2
             TFs.append((names[i],S,S2,S3,S4,S5))
         hist = [x[1] for x in TFs]
-        TFs.sort(key=lambda x: x[2], reverse=True)
+        TFs.sort(key=lambda x: x[5], reverse=True)
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
             for val in item:
