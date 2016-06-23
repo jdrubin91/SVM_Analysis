@@ -22,6 +22,8 @@ def run(files,figures):
             zero = [0] * len(names)
             alist = [0] * len(names)
             blist = [0] * len(names)
+            clist = [0] * len(names)
+            dlist = [0] * len(names)
             for line in F:
                 line = line.strip().split()[3:]
                 for i in range(len(line[1:])):
@@ -34,11 +36,15 @@ def run(files,figures):
                     for i in range(len(line[1:])):
                         if int(line[i+1]) == 0:
                             zero[i] += 1.0
+                        else:
+                            clist[i] += 1.0
                 else:
                     pos += 1.0
                     for i in range(len(line[1:])):
                         if int(line[i+1]) != 0:
                             one[i] += 1.0
+                        else:
+                            dlist[i] += 1.0
         
         for i in range(len(one)):
             N = pos + neg
@@ -46,6 +52,9 @@ def run(files,figures):
             a = alist[i]/N
             #S = one[i] - N*p*a
             S = 1.0-stats.binom(N,p*a).cdf(one[i])
+            S2 = stats.binom(N,p*(1-a)).cdf(dlist[i])
+            S3 = stats.binom(N,(1-p)*a).cdf(clist[i])
+            S4 = stats.binom(N,(1-p)*(1-a)).cdf(zero[i])
             #print alist[i], one[i],zero[i],pos,neg,N
             if alist[i] == 0:
                 alist[i] = 0.002
@@ -54,13 +63,14 @@ def run(files,figures):
                 blist[i] = 0.002
                 zero[i] += 0.001
                 
-            S2 = ((float(one[i])/alist[i]) + (float(zero[i])/blist[i]))/2
-            TFs.append((names[i],S,S2))
+            S5 = ((float(one[i])/alist[i]) + (float(zero[i])/blist[i]))/2
+            TFs.append((names[i],S,S2,S3,S4,S5))
         hist = [x[1] for x in TFs]
         TFs.sort(key=lambda x: x[2], reverse=True)
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
-            outfile.write(item[0] + "," + str(item[1]) + "," + str(item[2]) + ",")
+            for val in item:
+                outfile.write(str(val) + ",")
         outfile.write('\n')
         
         F1 = plt.figure()
