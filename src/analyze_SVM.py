@@ -47,7 +47,7 @@ def run(files,figures):
             #S = ((float(one[i])/pos) + (float(zero[i])/neg))/2
             TFs.append((names[i],S))
         hist = [x[1] for x in TFs]
-        TFs.sort(key=lambda x: x[1], reverse=True)
+        TFs.sort(key=lambda x: x[1])
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
             outfile.write(item[0] + "," + str(item[1]) + ",")
