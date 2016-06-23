@@ -18,8 +18,8 @@ def run(figures):
     
     G = nx.Graph()
     for TF in network:
+        print len(network[TF])
         for i in range(0, len(network[TF])-1, 2):
-            print i
             G.add_edge(TF,network[TF][i],weight=float(network[TF][i+1]))
     
     #edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)] 
