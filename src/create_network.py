@@ -32,5 +32,5 @@ def run(figures):
     plt.axis('off')
     nx.draw_networkx_nodes(G, pos)
     nx.draw_networkx_edges(G, pos, edgelist=elarge)
-    nx.draw_networkx_labels(G,pos,font_size=20,font_family='sans-serif')
+    nx.draw_networkx_labels(G,pos,font_size=8,font_family='sans-serif')
     plt.savefig(figures+'network.png')
