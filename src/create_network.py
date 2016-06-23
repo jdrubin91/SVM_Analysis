@@ -23,7 +23,9 @@ def run(figures):
     
     edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)] 
     #elarge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] >0.5]       
+    
     #pos=nx.spring_layout(G)
+    print edgewidth
     pos = nx.spring_layout(G, iterations=50)
     plt.figure()
     plt.subplot(111)
