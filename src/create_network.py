@@ -17,7 +17,7 @@ def run(figures):
             weights = line[1].split(',')
             network[TF] = weights[:-1]
     
-    cut = 0.00000000001
+    cut = 0.0000000000000001
     G = nx.Graph()
     for TF in network:
         for i in range(0, (int(len(network[TF])-5)), 6):
