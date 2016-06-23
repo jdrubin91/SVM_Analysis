@@ -25,8 +25,8 @@ def run(figures):
     #elarge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] >0.5]       
     
     #pos=nx.spring_layout(G)
-    pos = nx.spring_layout(G, iterations=50)
-    print pos
+    #pos = nx.spring_layout(G, iterations=50)
+    pos = nx.random_layout(G)
     plt.figure()
     plt.subplot(111)
     plt.axis('off')
