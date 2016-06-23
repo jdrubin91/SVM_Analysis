@@ -54,12 +54,17 @@ figures = parent_dir(homedir) + '/figures/'
 #            print "done\nRunning univariate feature selection ..."
 #            SVM.univariate_feature_selection(X,Y,feature_names,figures,TFfile)
 #            print "done"
+
+#This version of main.run() creates support vector files for each TF.  Each file
+#is a bed file with all ChIP peaks for a given TF intersected with bidirectionals
+#and all other TFs.  An S-Score is calculated by the average of true positive perecentage
+#and true negative percentage
 def run():
     #print "Intersecting Replicates..."
     #intersect_replicates.run(TF,temp)
     #print "done\nCreating SVM files..."
     #create_SVM_files.run(temp,files,bidirectional)
-    print "done\nAnalyzing SVs..."
-    analyze_SVM.run(files,figures)
+    #print "done\nAnalyzing SVs..."
+    #analyze_SVM.run(files,figures)
     print "done\nCreating Network..."
     create_network.run(figures)

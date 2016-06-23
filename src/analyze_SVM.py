@@ -38,7 +38,6 @@ def run(files,figures):
         hist = [x[1] for x in TFs]
         TFs.sort(key=lambda x: x[1], reverse=True)
         
-        print len(TFs)
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
             outfile.write(item[0] + "," + str(item[1]) + ",")
