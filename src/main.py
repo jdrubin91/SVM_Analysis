@@ -66,5 +66,5 @@ def run():
     #create_SVM_files.run(temp,files,bidirectional)
     print "done\nAnalyzing SVs..."
     analyze_SVM.run(files,figures)
-    #print "done\nCreating Network..."
-    #create_network.run(figures)
+    print "done\nCreating Network..."
+    create_network.run(figures)
