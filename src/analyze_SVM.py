@@ -42,7 +42,7 @@ def run(files,figures):
             p = pos/N
             a = alist[i]/N
             #S = one[i] - N*p*a
-            S = 1.0-stats.binom(p*a,N).cdf(one[i])
+            S = 1.0-stats.binom(N,p*a).cdf(one[i])
             #print alist[i], one[i],zero[i],pos,neg,N
             #S = ((float(one[i])/pos) + (float(zero[i])/neg))/2
             TFs.append((names[i],S))
