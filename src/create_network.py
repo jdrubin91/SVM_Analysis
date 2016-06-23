@@ -22,14 +22,14 @@ def run(figures):
             G.add_edge(TF,network[TF][i],weight=float(network[TF][i+1]))
     
     edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)] 
-    #elarge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] >0.5]       
+    elarge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] >0.6]       
     
-    #pos=nx.spring_layout(G)
+    pos=nx.spring_layout(G)
     #pos = nx.spring_layout(G, iterations=50)
-    pos = nx.random_layout(G)
+    #pos = nx.random_layout(G)
     plt.figure()
     plt.subplot(111)
     plt.axis('off')
     nx.draw_networkx_nodes(G, pos)
-    nx.draw_networkx_edges(G, pos, width=edgewidth,)
+    nx.draw_networkx_edges(G, pos, edgelist=elarge, width=edgewidth,)
     plt.savefig(figures+'network.png')
