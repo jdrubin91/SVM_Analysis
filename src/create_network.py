@@ -18,12 +18,12 @@ def run(figures):
     
     G = nx.Graph()
     for TF in network:
-        print TF, len(network[TF])
         for i in range(0, len(network[TF])-1, 2):
-            G.add_edge(TF,network[TF][i],weight=float(network[TF][i+1]))
+            if float(network[TF][i+1]) > 0.6:
+                G.add_edge(TF,network[TF][i],weight=float(network[TF][i+1]))
     
-    #edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)] 
-    elarge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] >0.6]       
+    edgewidth = [ d['weight'] for (u,v,d) in G.edges(data=True)] 
+    #elarge=[(u,v) for (u,v,d) in G.edges(data=True) if d['weight'] >0.6]       
     
     pos=nx.spring_layout(G)
     #pos = nx.spring_layout(G, iterations=50)
@@ -32,6 +32,6 @@ def run(figures):
     plt.subplot(111)
     plt.axis('off')
     nx.draw_networkx_nodes(G, pos)
-    nx.draw_networkx_edges(G, pos, edgelist=elarge)
+    nx.draw_networkx_edges(G, pos, edge_color=edgewidth)
     nx.draw_networkx_labels(G,pos,font_size=8,font_family='sans-serif')
     plt.savefig(figures+'network.png')
