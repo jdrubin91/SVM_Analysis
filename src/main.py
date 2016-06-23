@@ -64,7 +64,7 @@ def run():
     #intersect_replicates.run(TF,temp)
     #print "done\nCreating SVM files..."
     #create_SVM_files.run(temp,files,bidirectional)
-    #print "done\nAnalyzing SVs..."
-    #analyze_SVM.run(files,figures)
+    print "done\nAnalyzing SVs..."
+    analyze_SVM.run(files,figures)
     print "done\nCreating Network..."
     create_network.run(figures)

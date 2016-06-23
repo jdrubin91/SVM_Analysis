@@ -44,10 +44,10 @@ def run(files,figures):
             #S = one[i] - N*p*a
             S = 1.0-stats.binom(N,p*a).cdf(one[i])
             #print alist[i], one[i],zero[i],pos,neg,N
-            #S = ((float(one[i])/pos) + (float(zero[i])/neg))/2
-            TFs.append((names[i],S))
+            S2 = ((float(one[i])/pos) + (float(zero[i])/neg))/2
+            TFs.append((names[i],S,S2))
         hist = [x[1] for x in TFs]
-        TFs.sort(key=lambda x: x[1])
+        TFs.sort(key=lambda x: x[2], reverse=True)
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
             outfile.write(item[0] + "," + str(item[1]) + ",")
