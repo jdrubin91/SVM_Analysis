@@ -50,7 +50,7 @@ def run(files,figures):
         TFs.sort(key=lambda x: x[2], reverse=True)
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
-            outfile.write(item[0] + "," + str(item[1]) + ",")
+            outfile.write(item[0] + "," + str(item[1]) + "," + str(item[2]) + ",")
         outfile.write('\n')
         
         F1 = plt.figure()
