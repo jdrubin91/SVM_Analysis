@@ -17,12 +17,12 @@ def run(figures):
             weights = line[1].split(',')
             network[TF] = weights[:-1]
     
-
+    cut = 0.0001
     G = nx.Graph()
     for TF in network:
         for i in range(0, (int(len(network[TF])-5)), 6):
-            if float(network[TF][i+1]) < 0.01 and float(network[TF][i+2]) < 0.01 and float(network[TF][i+3]) < 0.01 and float(network[TF][i+4]) < 0.01:
-                G.add_edge(TF,network[TF][i],weight=0.0001)
+            if float(network[TF][i+1]) < cut and float(network[TF][i+2]) < cut and float(network[TF][i+3]) < cut and float(network[TF][i+4]) < cut:
+                G.add_edge(TF,network[TF][i],weight=0.01)
         
     
     
