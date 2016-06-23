@@ -43,7 +43,7 @@ def run(files,figures):
             a = alist[i]/N
             S = one[i] - N*p*a
             S2 = zero[i] - N*(1-p)*(1-a)
-            print one[i],zero[i],pos,neg,N
+            print alist[i], one[i],zero[i],pos,neg,N
             #S = ((float(one[i])/pos) + (float(zero[i])/neg))/2
             TFs.append((names[i],S))
             TFs2.append((names[i],S2))
