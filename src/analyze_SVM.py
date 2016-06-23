@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 def run(files,figures):
     outfile = open(figures + 'TFs.txt','w')
     for file1 in os.listdir(files):
+        print file1
         TFs = list()
         TFs2 = list()
         hist = list()
@@ -65,10 +66,10 @@ def run(files,figures):
         plt.savefig(figures + file1.split('.')[0] + '.png')
         plt.close()
         
-        F1 = plt.figure()
-        ax1 = F1.add_subplot(121)
+        F2 = plt.figure()
+        ax1 = F2.add_subplot(121)
         ax1.hist(hist2,50)
-        ax2 = F1.add_subplot(122)
+        ax2 = F2.add_subplot(122)
         ax2.xaxis.set_visible(False)
         ax2.yaxis.set_visible(False)
         colLabels=("TF","S-Score")
