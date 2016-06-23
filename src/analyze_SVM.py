@@ -6,13 +6,13 @@ matplotlib.use('Agg')
 from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 import matplotlib.pyplot as plt
+import scipy.stats as stats
 
 def run(files,figures):
     outfile = open(figures + 'TFs.txt','w')
     for file1 in os.listdir(files):
         print file1
         TFs = list()
-        TFs2 = list()
         hist = list()
         pos = 0
         neg = 0
@@ -41,16 +41,13 @@ def run(files,figures):
             N = pos + neg
             p = pos/N
             a = alist[i]/N
-            S = one[i] - N*p*a
-            S2 = zero[i] - N*(1-p)*(1-a)
-            print alist[i], one[i],zero[i],pos,neg,N
+            #S = one[i] - N*p*a
+            S = 1.0-stats.binom(p*a,N).cdf(one[i])
+            #print alist[i], one[i],zero[i],pos,neg,N
             #S = ((float(one[i])/pos) + (float(zero[i])/neg))/2
             TFs.append((names[i],S))
-            TFs2.append((names[i],S2))
         hist = [x[1] for x in TFs]
-        hist2 = [x[1] for x in TFs2]
         TFs.sort(key=lambda x: x[1], reverse=True)
-        TFs2.sort(key=lambda x: x[1], reverse=True)
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
             outfile.write(item[0] + "," + str(item[1]) + ",")
@@ -66,17 +63,6 @@ def run(files,figures):
         the_table = ax2.table(cellText=TFs[0:27], colLabels=colLabels,loc='center',fontsize=1)
         plt.savefig(figures + file1.split('.')[0] + '.png')
         plt.close()
-        
-        #F2 = plt.figure()
-        #ax1 = F2.add_subplot(121)
-        #ax1.hist(hist2,50)
-        #ax2 = F2.add_subplot(122)
-        #ax2.xaxis.set_visible(False)
-        #ax2.yaxis.set_visible(False)
-        #colLabels=("TF","S-Score")
-        #the_table = ax2.table(cellText=TFs2[0:27], colLabels=colLabels,loc='center',fontsize=1)
-        #plt.savefig(figures + file1.split('.')[0] + '_2.png')
-        #plt.close()
         
     outfile.close()
         
