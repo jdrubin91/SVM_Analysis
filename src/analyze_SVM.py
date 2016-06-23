@@ -60,7 +60,7 @@ def run(files,figures):
         ax2.xaxis.set_visible(False)
         ax2.yaxis.set_visible(False)
         colLabels=("TF","S-Score")
-        the_table = ax2.table(cellText=TFs[0:27], colLabels=colLabels,loc='center',fontsize=1)
+        the_table = ax2.table(cellText=[(x[0],x[2]) for x in TFs[:27]], colLabels=colLabels, loc='center',fontsize=1)
         plt.savefig(figures + file1.split('.')[0] + '.png')
         plt.close()
         
