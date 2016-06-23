@@ -13,6 +13,7 @@ def run(figures):
         for line in F:
             line = line.strip().split()
             TF = line[0]
+            print line[1]
             weights = line[1].split(',')
             network[TF] = weights
     
