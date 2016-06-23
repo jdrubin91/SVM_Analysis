@@ -20,7 +20,7 @@ def run(figures):
 
     G = nx.Graph()
     for TF in network:
-        for i in range(0, (len(network[TF])*.1)-2, 3):
+        for i in range(0, (int(len(network[TF])*.1))-2, 3):
             if float(network[TF][i+1]) < 0.000000001:
                 G.add_edge(TF,network[TF][i],weight=1)
         
