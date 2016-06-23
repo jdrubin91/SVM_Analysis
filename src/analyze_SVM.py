@@ -12,7 +12,6 @@ def run(files,figures):
     for file1 in os.listdir(files):
         TFs = list()
         hist = list()
-        print file1
         pos = 0
         neg = 0
         with open(files + file1) as F:
@@ -37,7 +36,7 @@ def run(files,figures):
             TFs.append((names[i],S))
         hist = [x[1] for x in TFs]
         TFs.sort(key=lambda x: x[1], reverse=True)
-        
+        print file1, len(TFs)
         outfile.write(file1.split('.')[0] + '\t')
         for item in TFs:
             outfile.write(item[0] + "," + str(item[1]) + ",")
