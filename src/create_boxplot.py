@@ -19,9 +19,9 @@ def run(files,figures):
                 weights = [int(i) for i in line[3:]]
                 bidirectional = weights[0]
                 if bidirectional == 0:
-                    neg.append(sum(weights[1:]))
+                    neg.append(sum([1 for i in weights[1:] if i > 0]))
                 else:
-                    pos.append(sum(weights[1:]))
+                    pos.append(sum([1 for i in weights[1:] if i > 0]))
 
     F = plt.figure()
     ax1 = F.add_subplot(111)
