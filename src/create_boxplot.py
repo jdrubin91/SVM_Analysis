@@ -18,6 +18,8 @@ def run(files,figures):
                 line = line.strip().split()
                 weights = [int(i) for i in line[3:]]
                 bidirectional = weights[0]
+                if sum([1 for i in weights[1:] if i > 0]) > 100:
+                    print file1,line[0:3]
                 if bidirectional == 0:
                     neg.append(sum([1 for i in weights[1:] if i > 0]))
                 else:
