@@ -13,6 +13,7 @@ def run(files,figures):
     for file1 in os.listdir(files):
         print file1
         with open(files+file1) as F:
+            F.readline()
             for line in F:
                 line = line.strip().split()
                 weights = [int(i) for i in line[3:]]
