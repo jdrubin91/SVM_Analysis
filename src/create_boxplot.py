@@ -11,10 +11,11 @@ def run(files,figures):
     pos = list()
     neg = list()
     for file1 in os.listdir(files):
+        print file1
         with open(files+file1) as F:
             for line in F:
                 line = line.strip().split()
-                weights = [int(i) for i in line[3:].split()]
+                weights = [int(i) for i in line[3:]]
                 bidirectional = weights[0]
                 if bidirectional == 0:
                     neg.append(sum(weights[1:]))
