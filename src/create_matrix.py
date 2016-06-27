@@ -40,18 +40,18 @@ def run(files,figures):
             bj = b[j]
             Ex = (p/N)*(wj/N)*N
             if Ex == 0:
-                I[TFi + '-' + TFj] = 0
+                I[TFi + '~' + TFj] = 0
             else:
-                I[TFi + '-' + TFj] = bj/Ex
+                I[TFi + '~' + TFj] = bj/Ex
     
     name = list()
     val = list()
     for pair in I:
         TFi,TFj = pair.split('-')
-        if not TFj + '-' + TFi in name:
+        if not TFj + '~' + TFi in name:
             name.append(pair)
             Si = I[pair]
-            Sj = I[TFj + '-' + TFi]
+            Sj = I[TFj + '~' + TFi]
             val.append((Si+Sj)/2)
     
     print name
