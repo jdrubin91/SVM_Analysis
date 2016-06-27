@@ -63,13 +63,13 @@ figures = parent_dir(homedir) + '/figures/'
 #and all other TFs.  An S-Score is calculated by the average of true positive perecentage
 #and true negative percentage
 def run():
-    #print "Intersecting Replicates..."
-    #intersect_replicates.run(TF,temp)
-    #print "done\nCreating SVM files..."
-    #create_SVM_files.run(temp,files,bidirectional)
-    #print "done\nAnalyzing SVs..."
-    #analyze_SVM.run(files,figures)
-    #print "done\nCreating Network..."
-    #create_network.run(figures)
-    #create_boxplot.run(files,figures)
+    print "Intersecting Replicates..."
+    intersect_replicates.run(TF,temp)
+    print "done\nCreating SVM files..."
+    create_SVM_files.run(temp,files,bidirectional)
+    print "done\nAnalyzing SVs..."
+    analyze_SVM.run(files,figures)
+    print "done\nCreating Network..."
+    create_network.run(figures)
+    create_boxplot.run(files,figures)
     create_matrix.run(files,figures)
