@@ -24,7 +24,7 @@ def run(files,figures):
                     p += 1.0
                     b = [b[i] + line[i+1] for i in range(len(line[1:]))]
                 weights = [weights[i] + line[i+1] for i in range(len(line[1:]))]
-        S[file1] = [N,p,TFs,weights,b]
+        S[file1.split('.')[0]] = [N,p,TFs,weights,b]
     I = dict()
     print "Done with parsing, starting to analyze"
     for TFi in S:
@@ -47,7 +47,7 @@ def run(files,figures):
     name = list()
     val = list()
     for pair in I:
-        TFi,TFj = pair.split('-')
+        TFi,TFj = pair.split('~')
         if not TFj + '~' + TFi in name:
             name.append(pair)
             Si = I[pair]
