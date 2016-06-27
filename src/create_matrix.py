@@ -26,7 +26,9 @@ def run(files,figures):
                 weights = [weights[i] + line[i+1] for i in range(len(line[1:]))]
         S[file1] = [N,p,TFs,weights,b]
     I = dict()
+    print "Done with parsing, starting to analyze"
     for TFi in S:
+        print TFi
         N = S[TFi][0]
         p = S[TFi][1]
         TFs = S[TFi][2]
@@ -37,7 +39,10 @@ def run(files,figures):
             wj = weights[j]
             bj = b[j]
             Ex = (p/N)*(wj/N)*N
-            I[TFi + '-' + TFj] = bj/Ex
+            if Ex == 0:
+                I[TFi + '-' + TFj] = 0
+            else:
+                I[TFi + '-' + TFj] = bj/Ex
     
     name = list()
     val = list()
