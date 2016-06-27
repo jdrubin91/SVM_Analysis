@@ -9,7 +9,7 @@ def run(files,figures):
         N = 0
         p = 0
         with open(files+file1) as F:
-            TFs = F.readline().strip().split()
+            TFs = F.readline().strip().split()[1:]
             weights = [0.0] * len(TFs)
             b = [0.0] * len(TFs)
             for line in F:
