@@ -5,6 +5,7 @@ import os
 def run(files,figures):
     S = dict()
     for file1 in os.listdir(files):
+        print file1
         N = 0
         p = 0
         with open(files+file1) as F:
