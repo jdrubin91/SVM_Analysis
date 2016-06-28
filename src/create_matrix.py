@@ -37,7 +37,6 @@ def run(files,figures):
     I = dict()
     print "Done with parsing, starting to analyze"
     for TFi in S:
-        print TFi
         N = S[TFi][0]
         p = S[TFi][1]
         TFs = S[TFi][2]
@@ -72,21 +71,21 @@ def run(files,figures):
     order = sorted(order,key=itemgetter(1),reverse=True)
     labels = [i for (i,j) in order]
     vectors = list()
-    M = 0
+    M = list()
     for i in range(len(labels)):
         vectors.append(list())
         for j in range(len(labels)):
             index = [y[0] for y in d1[labels[i]]].index(labels[j])
             vectors[i].append(d1[labels[i]][index][1])
-            if d1[labels[i]][index][1] > M:
-                M=d1[labels[i]][index][1]
+            M.append(d1[labels[i]][index][1])
                 
     #vectors = [d1[name][i][1] for name,i in labels,range(len(labels))]
     
     vectors = np.array(vectors)
             
     fig, ax = plt.subplots()
-    heatmap = ax.pcolor(vectors, cmap=plt.cm.Blues, vmin=0, vmax=M)
+    print np.mean(M)+(np.std(M)*2)
+    heatmap = ax.pcolor(vectors, cmap=plt.cm.Blues, vmin=0, vmax=np.mean(M)+(np.std(M)*2))
     
     
    # put the major ticks at the middle of each cell
