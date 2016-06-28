@@ -45,7 +45,7 @@ def run(files,figures):
         for j in range(len(TFs)):
             TFj = TFs[j]
             wj = weights[j]
-            bj = b[j]/N
+            bj = b[j]
             Ex = (p/N)*(wj/N)*N
             if Ex == 0:
                 I[TFi + '~' + TFj] = 0.0
