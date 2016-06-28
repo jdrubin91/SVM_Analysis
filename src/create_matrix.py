@@ -73,6 +73,7 @@ def run(files,figures):
     
     order = sorted(order,key=itemgetter(1),reverse=True)
     labels = [i for (i,j) in order]
+    print labels[-1]
     vectors = list()
     for i in range(len(labels)):
         vectors.append(list())
@@ -81,7 +82,6 @@ def run(files,figures):
             vectors[i].append(d1[labels[i]][index][1])
     #vectors = [d1[name][i][1] for name,i in labels,range(len(labels))]
     
-    print vectors
     vectors = np.array(vectors)
     d = np.zeros((vectors.shape[1],vectors.shape[1]))
     print d.shape
@@ -121,7 +121,7 @@ def run(files,figures):
     #ax.set_yticklabels([",".join([ TForder[j] for j in range(i,min(i+res, vectors.shape[0]) ) ]) for i in np.arange(0,vectors.shape[0], res)], minor=False,fontsize = 10)
     
     ax.set_xticklabels(["".join(labels)], minor=False,fontsize = 10)
-    ax.set_yticklabels([",".join(labels) for i in np.arange(0,vectors.shape[0], res)], minor=False,fontsize = 10)
+    ax.set_yticklabels([",".join(labels)], minor=False,fontsize = 10)
     
     # rotate the
     plt.xticks(rotation=90)
