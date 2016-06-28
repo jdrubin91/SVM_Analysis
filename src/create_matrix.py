@@ -85,7 +85,7 @@ def run(files,figures):
     vectors = np.array(vectors)
             
     fig, ax = plt.subplots()
-    heatmap = ax.pcolor(vectors, cmap=plt.cm.Blues)
+    heatmap = ax.pcolor(vectors, cmap=plt.cm.Blues, vmin=0, vmax=1)
     
     
    # put the major ticks at the middle of each cell
@@ -96,6 +96,7 @@ def run(files,figures):
     ax.invert_yaxis()
     ax.xaxis.tick_top()
     
-    ax.set_xticklabels(labels, minor=False)
-    ax.set_yticklabels(labels, minor=False)
+    ax.set_xticklabels(labels, minor=False, fontsize=10)
+    ax.set_yticklabels(labels, minor=False, fontsize=10)
+    plt.xticks(rotation=90)
     plt.savefig(figures + 'matrix.png')
