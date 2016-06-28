@@ -69,23 +69,24 @@ def run(files,figures):
             i += tuple1[1]
         order.append((key,i))
     
-    print d1
-    
     order = sorted(order,key=itemgetter(1),reverse=True)
     labels = [i for (i,j) in order]
-    print labels[-1]
     vectors = list()
+    M = 0
     for i in range(len(labels)):
         vectors.append(list())
         for j in range(len(labels)):
             index = [y[0] for y in d1[labels[i]]].index(labels[j])
             vectors[i].append(d1[labels[i]][index][1])
+            if d1[labels[i]][index][1] > M:
+                M=d1[labels[i]][index][1]
+                
     #vectors = [d1[name][i][1] for name,i in labels,range(len(labels))]
     
     vectors = np.array(vectors)
             
     fig, ax = plt.subplots()
-    heatmap = ax.pcolor(vectors, cmap=plt.cm.Blues, vmin=0, vmax=1)
+    heatmap = ax.pcolor(vectors, cmap=plt.cm.Blues, vmin=0, vmax=M)
     
     
    # put the major ticks at the middle of each cell
@@ -96,7 +97,8 @@ def run(files,figures):
     ax.invert_yaxis()
     ax.xaxis.tick_top()
     
-    ax.set_xticklabels(labels, minor=False, fontsize=10)
-    ax.set_yticklabels(labels, minor=False, fontsize=10)
+    ax.set_xticklabels(labels, minor=False, fontsize=8)
+    ax.set_yticklabels(labels, minor=False, fontsize=8)
     plt.xticks(rotation=90)
+    fig.set_size_inches(20, 15,forward=True)
     plt.savefig(figures + 'matrix.png')
