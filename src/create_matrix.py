@@ -71,7 +71,7 @@ def run(files,figures):
     
     order = sorted(order,key=itemgetter(1),reverse=True)
     labels = [i for (i,j) in order]
-    vectors = [d1[name][i] for name,i in labels,range(len(d1[name]))]
+    vectors = [d1[name][i][1] for name,i in labels,range(len(labels))]
     print vectors
     
     
