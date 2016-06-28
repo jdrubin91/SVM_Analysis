@@ -73,15 +73,15 @@ def run(files,figures):
     
     order = sorted(order,key=itemgetter(1),reverse=True)
     labels = [i for (i,j) in order]
-    print labels
-    vectors = [[0] * len(labels)] * len(labels)
+    vectors = list()
     for i in range(len(labels)):
+        vectors.append(list())
         for j in range(len(labels)):
             index = [y[0] for y in d1[labels[i]]].index(labels[j])
-            vectors[i][j] = d1[labels[i]][index][1]
+            vectors[i].append(d1[labels[i]][index][1])
     #vectors = [d1[name][i][1] for name,i in labels,range(len(labels))]
     
-    
+    print vectors
     vectors = np.array(vectors)
     d = np.zeros((vectors.shape[1],vectors.shape[1]))
     print d.shape
