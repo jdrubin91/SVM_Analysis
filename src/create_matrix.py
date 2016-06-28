@@ -56,7 +56,7 @@ def run(files,figures):
     for pair in I:
         TFi,TFj = pair.split('~')
         if not TFi in d1:
-            d1[TFi] = [(TFi,1.0)]
+            d1[TFi] = [(TFi,0.0)]
         Si = I[pair]
         Sj = I[TFj + '~' + TFi]
         d1[TFi].append((TFj,math.log(((Si+Sj)/2.0)+0.0001)))
