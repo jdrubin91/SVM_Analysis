@@ -64,6 +64,7 @@ def run(files,figures):
     
     order = list()
     for key in d1:
+        print key
         i = 0
         for tuple1 in d1[key]:
             i += tuple1[1]
@@ -71,6 +72,7 @@ def run(files,figures):
     
     order = sorted(order,key=itemgetter(1),reverse=True)
     labels = [i for (i,j) in order]
+    print labels
     vectors = [[0] * len(labels)] * len(labels)
     for i in range(len(labels)):
         for j in range(len(labels)):
