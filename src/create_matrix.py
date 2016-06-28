@@ -61,7 +61,6 @@ def run(files,figures):
         Si = I[pair]
         Sj = I[TFj + '~' + TFi]
         d1[TFi].append((TFj,(Si+Sj)/2.0))
-    print d1
     
     order = list()
     for key in d1:
@@ -73,6 +72,7 @@ def run(files,figures):
     order = sorted(order,key=itemgetter(1),reverse=True)
     labels = [i for (i,j) in order]
     vectors = [d1[name] for name in labels]
+    print vectors
     
     
     vectors = np.array(vectors)
