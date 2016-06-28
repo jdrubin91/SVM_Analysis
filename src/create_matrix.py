@@ -85,7 +85,7 @@ def run(files,figures):
             
     fig, ax = plt.subplots()
     print np.mean(M)+(np.std(M)*2)
-    heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=np.mean(M)-np.std(M)*2, vmax=np.mean(M)+np.std(M)*2)
+    heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=-5, vmax=5)
     
     
    # put the major ticks at the middle of each cell
