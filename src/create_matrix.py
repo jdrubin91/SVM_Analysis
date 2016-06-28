@@ -115,6 +115,8 @@ def run(files,figures):
             for k in range(x):                    
                 D[i,j] += (vectors[i][k] - vectors[j][k])**2
             D[i,j] = math.sqrt(D[i,j])
+    print D
+    
     
     # Compute and plot first dendrogram.
     fig = pylab.figure(figsize=(8,8))
