@@ -76,7 +76,7 @@ def run(files,figures):
     vectors = [[0] * len(labels)] * len(labels)
     for i in range(len(labels)):
         for j in range(len(labels)):
-            index = [y[0] for y in d1[labels[i]].index(labels[j])]
+            index = [y[0] for y in d1[labels[i]]].index(labels[j])
             print i,j,index
             vectors[i,j] = d1[labels[i]][index][1]
     #vectors = [d1[name][i][1] for name,i in labels,range(len(labels))]
