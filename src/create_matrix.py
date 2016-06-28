@@ -37,20 +37,22 @@ def run(files,figures):
     I = dict()
     print "Done with parsing, starting to analyze"
     for TFi in S:
-        N = S[TFi][0]
-        p = S[TFi][1]
-        TFs = S[TFi][2]
-        weights = S[TFi][3]
-        b = S[TFi][4]
-        for j in range(len(TFs)):
-            TFj = TFs[j]
-            wj = weights[j]
-            bj = b[j]
-            Ex = (p/N)*(wj/N)*N
-            if Ex == 0:
-                I[TFi + '~' + TFj] = 0.0
-            else:
-                I[TFi + '~' + TFj] = bj/Ex
+        if not TFi == 'ZNF274':
+            N = S[TFi][0]
+            p = S[TFi][1]
+            TFs = S[TFi][2]
+            weights = S[TFi][3]
+            b = S[TFi][4]
+            for j in range(len(TFs)):
+                TFj = TFs[j]
+                if not TFj == 'ZNF274':
+                    wj = weights[j]
+                    bj = b[j]
+                    Ex = (p/N)*(wj/N)*N
+                    if Ex == 0:
+                        I[TFi + '~' + TFj] = 0.0
+                    else:
+                        I[TFi + '~' + TFj] = bj/Ex
     
     d1 = dict()
     for pair in I:
@@ -85,7 +87,7 @@ def run(files,figures):
             
     fig, ax = plt.subplots()
     print np.mean(M)+(np.std(M)*2)
-    heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=-5, vmax=5)
+    heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=-2, vmax=2)
     
     
    # put the major ticks at the middle of each cell
