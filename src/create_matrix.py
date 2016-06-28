@@ -59,7 +59,7 @@ def run(files,figures):
             d1[TFi] = [(TFi,1.0)]
         Si = I[pair]
         Sj = I[TFj + '~' + TFi]
-        d1[TFi].append((TFj,(Si+Sj)/2.0))
+        d1[TFi].append((TFj,math.log(((Si+Sj)/2.0)+0.0001)))
     
     order = list()
     for key in d1:
@@ -85,7 +85,7 @@ def run(files,figures):
             
     fig, ax = plt.subplots()
     print np.mean(M)+(np.std(M)*2)
-    heatmap = ax.pcolor(vectors, cmap=plt.cm.Blues, vmin=0, vmax=np.mean(M)+(np.std(M)*2))
+    heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=np.mean(M)-np.std(M)*2, vmax=np.mean(M)+np.std(M)*2)
     
     
    # put the major ticks at the middle of each cell
