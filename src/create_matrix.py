@@ -44,16 +44,14 @@ def run(files,figures):
             else:
                 I[TFi + '~' + TFj] = bj/Ex
     
-    name = list()
-    val = list()
+    d1 = dict()
     for pair in I:
         TFi,TFj = pair.split('~')
-        if not TFj + '~' + TFi in name:
-            name.append(pair)
-            Si = I[pair]
-            Sj = I[TFj + '~' + TFi]
-            val.append((Si+Sj)/2)
-    
-    print name
-    print val
+        if not TFi in d1:
+            d1[TFi] = list()
+        Si = I[pair]
+        Sj = I[TFj + '~' + TFi]
+        d1[TFi].append((TFj,(Si+Sj)/2))
+    print d1
+
             
