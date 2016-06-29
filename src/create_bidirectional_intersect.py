@@ -18,6 +18,7 @@ if __name__ == "__main__":
     a = pybt.BedTool(bidirectional).cut([0,1,2])
     trackname = list()
     for folder in os.listdir(temp):
+        print folder
         file1 = temp + folder + '/fimo.bed'
         trackname.append(file1.split('.')[0])
         b = pybt.BedTool(temp + file1).sort()
@@ -32,6 +33,7 @@ if __name__ == "__main__":
     a = pybt.BedTool(bidirectional).cut([0,1,2])
     trackname = list()
     for folder in os.listdir(temp):
+        print folder
         file1 = temp + folder + '/fimo.bed'
         trackname.append(file1.split('.')[0])
         b = pybt.BedTool(temp + file1).sort()
