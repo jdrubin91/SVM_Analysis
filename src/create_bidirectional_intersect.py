@@ -12,7 +12,7 @@ def parent_dir(directory):
 
 if __name__ == "__main__":
     homedir = os.path.dirname(os.path.realpath(__file__))
-    bidirectional = '/scratch/Shares/dowell/EMG_out_files/human/SRR1552480-1_divergent_classifications.bed'
+    bidirectional = '/scratch/Users/joru1876/ENCFF001UWQ.bed'
     temp = parent_dir(homedir) + '/temp/'
     savedir = '/scratch/Users/joru1876/'
     a = pybt.BedTool(bidirectional)
