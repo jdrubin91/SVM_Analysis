@@ -15,7 +15,7 @@ if __name__ == "__main__":
     bidirectional = '/scratch/Users/joru1876/ENCFF001UWQ.bed'
     temp = parent_dir(homedir) + '/temp/'
     savedir = '/scratch/Users/joru1876/'
-    a = pybt.BedTool(bidirectional)
+    a = pybt.BedTool(bidirectional).cut([0,1,2])
     trackname = list()
     for file1 in os.listdir(temp):
         trackname.append(file1.split('.')[0])
