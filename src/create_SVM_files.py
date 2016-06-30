@@ -5,16 +5,20 @@ import os
 
 def run(temp,files,bidirectional,dnase):
     for file1 in os.listdir(temp):
-        a = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
-        trackname = ['Bidirectional','DNase']
-        a = a.intersect(pybt.BedTool(bidirectional).cut([0,1,2]).sort(),wao=True)
-        a = a.intersect(pybt.BedTool(dnase).cut([0,1,2]).sort(),wao=True)
-        for file2 in os.listdir(temp):
-            if file1 != file2:
-                print file2
-                trackname.append(file2.split('.')[0])
-                b = pybt.BedTool(temp + file2).cut([0,1,2]).sort()
-                a = a.intersect(b,wao=True)
-                
-        print file1, len(trackname)
-        a.saveas(files + file1,trackline='\t'.join(trackname))
+        if 'eGFP' not in file1:
+            a = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
+            trackname = ['Bidirectional','DNase']
+            a = a.intersect(pybt.BedTool(bidirectional).cut([0,1,2]).sort(),wao=True)
+            a = a.intersect(pybt.BedTool(dnase).cut([0,1,2]).sort(),wao=True)
+            for file2 in os.listdir(temp):
+                if file1 != file2 and 'eGFP' not in file2:
+                    print file2
+                    trackname.append(file2.split('.')[0])
+                    b = pybt.BedTool(temp + file2).cut([0,1,2]).sort()
+                    try:
+                        a = a.intersect(b,wao=True)
+                    except pybt.helpers.BEDToolsError:
+                        print "error in: ",file2
+                    
+            print file1, len(trackname)
+            a.saveas(files + file1,trackline='\t'.join(trackname))
