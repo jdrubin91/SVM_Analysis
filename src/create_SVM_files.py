@@ -8,7 +8,9 @@ def run(temp,files,bidirectional,dnase):
         a = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
         trackname = ['Bidirectional','DNase']
         a = a.intersect(pybt.BedTool(bidirectional).cut([0,1,2]).sort(),wao=True)
+        print "Intersected bidir"
         a = a.intersect(pybt.BedTool(dnase).cut([0,1,2]).sort(),wao=True)
+        print "Intersected DNase"
         for file2 in os.listdir(temp):
             if file1 != file2:
                 trackname.append(file2.split('.')[0])
