@@ -16,6 +16,7 @@ if __name__ == "__main__":
     temp = '/scratch/Shares/dowell/ENCODE/HOCOMOCODatabaseFIMO/FIMO_OUT_v10/'
     savedir = '/scratch/Users/joru1876/files/'
     for bidirectional in files:
+        print bidirectional
         a = pybt.BedTool(bidirectional).cut([0,1,2])
         trackname = list()
         for folder in os.listdir(temp):
@@ -36,6 +37,7 @@ if __name__ == "__main__":
     savedir = '/scratch/Users/joru1876/files/'
     
     for bed in files:
+        print bed
         a = pybt.BedTool(bed).cut([0,1,2])
         trackname = list()
         for file1 in temp:
