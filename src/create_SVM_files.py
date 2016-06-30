@@ -3,11 +3,12 @@ __author__ = 'Jonathan Rubin'
 import pybedtools as pybt
 import os
 
-def run(temp,files,bidirectional):
+def run(temp,files,bidirectional,dnase):
     for file1 in os.listdir(temp):
         a = pybt.BedTool(temp + file1)
-        trackname = ['Bidirectional']
+        trackname = ['Bidirectional','DNase']
         a = a.intersect(pybt.BedTool(bidirectional),wao=True)
+        a = a.intersect(pybt.BedTool(dnase),wao=True)
         for file2 in os.listdir(temp):
             if file1 != file2:
                 trackname.append(file2.split('.')[0])

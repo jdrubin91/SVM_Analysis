@@ -14,6 +14,7 @@ import create_boxplot
 import create_matrix
 
 bidirectional = '/scratch/Shares/dowell/EMG_out_files/human/SRR1552480-1_divergent_classifications.bed'
+dnase = '/scratch/Users/joru1876/ENCFF001UWQ.bed'
 #TF = '/scratch/Shares/dowell/ENCODE/K562_TFS/'
 TF = '/scratch/Shares/dowell/ENCODE/old/TF_CT/k562/temp/'
 histones = '/scratch/Shares/dowell/ENCODE/SVM/HCT116/histone_mods/bowtie2/sortedbam/genomecoveragebed/fortdf/'
@@ -63,13 +64,13 @@ figures = parent_dir(homedir) + '/figures/'
 #and all other TFs.  An S-Score is calculated by the average of true positive perecentage
 #and true negative percentage
 def run():
-    #print "Intersecting Replicates..."
-    #intersect_replicates.run(TF,temp)
-    #print "done\nCreating SVM files..."
-    #create_SVM_files.run(temp,files,bidirectional)
-    #print "done\nAnalyzing SVs..."
-    #analyze_SVM.run(files,figures)
-    #print "done\nCreating Network..."
-    #create_network.run(figures)
-    #create_boxplot.run(files,figures)
+    print "Intersecting Replicates..."
+    intersect_replicates.run(TF,temp)
+    print "done\nCreating SVM files..."
+    create_SVM_files.run(temp,files,bidirectional,dnase)
+    print "done\nAnalyzing SVs..."
+    analyze_SVM.run(files,figures)
+    print "done\nCreating Network..."
+    create_network.run(figures)
+    create_boxplot.run(files,figures)
     create_matrix.run(files,figures)
