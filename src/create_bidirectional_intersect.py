@@ -23,7 +23,10 @@ if __name__ == "__main__":
             file1 = temp + folder + '/fimo.bed'
             trackname.append(file1.split('/')[-2].split('_')[0])
             b = pybt.BedTool(file1).sort()
-            a = a.intersect(b,c=True)
+            try:
+                a = a.intersect(b,c=True)
+            except pybt.helpers.BEDToolsError:
+                print "error in: ", file1
             
         a.saveas(savedir + bidirectional.split('/')[-1],trackline='\t'.join(trackname))
         
@@ -36,17 +39,21 @@ if __name__ == "__main__":
         a = pybt.BedTool(bed).cut([0,1,2])
         trackname = list()
         for file1 in temp:
-            print file1
-            for folder in motif:
-                if folder.split('_')[0] == file1:
-                    print folder
-                    name = file1.split('.')[0]
-                    trackname.append(name)
-                    trackname.append(name + '_M')
-                    b = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
-                    c = pybt.BedTool(motif + folder + '/fimo.bed').cut([0,1,2]).sort()
-                    a = a.intersect(b,c=True)
-                    a = a.intersect(c,c=True)
+            if 'eGFP' not in file1:
+                print file1
+                for folder in motif:
+                    if folder.split('_')[0] == file1:
+                        print folder
+                        name = file1.split('.')[0]
+                        trackname.append(name)
+                        trackname.append(name + '_M')
+                        b = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
+                        c = pybt.BedTool(motif + folder + '/fimo.bed').cut([0,1,2]).sort()
+                        try:
+                            a = a.intersect(b,c=True)
+                            a = a.intersect(c,c=True)
+                        except pybt.helpers.BEDToolsError:
+                            print "error in: ", file1
                     
         a.saveas(savedir + bed.split('/')[-1],trackline='\t'.join(trackname))
                     
