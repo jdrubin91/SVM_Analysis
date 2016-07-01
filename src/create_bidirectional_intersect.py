@@ -51,8 +51,8 @@ if __name__ == "__main__":
         a = pybt.BedTool(bed).cut([0,1,2])
         a.saveas(savedir + bed.split('/')[-1],trackline='Chr\tStart\tStop')
         trackname = list()
-        for file1 in temp:
-            if 'eGFP' not in file1 and '/' not in file1:
+        for file1 in os.listdir(temp):
+            if 'eGFP' not in file1:
                 print file1
                 for folder in motif:
                     if folder.split('_')[0] == file1:
