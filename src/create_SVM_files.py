@@ -54,4 +54,4 @@ def run(temp,files,bidirectional,dnase):
                     a.saveas(files+'temp.bed')
                     append(files+file1,files+'temp.bed')
                     
-        add_header(files+file1,'\t'.join(header))
+            add_header(files+file1,'\t'.join(header))
