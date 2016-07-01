@@ -9,6 +9,19 @@ def parent_dir(directory):
     newdir = '/'.join(pathlist[0:len(pathlist)-1])
     
     return newdir
+    
+def append(file1,file2):
+    linelist = list()
+    with open(file1) as F1:
+        with open(file2)as F2:
+            for line1 in F1:
+                line2 = F2.realine()
+                add = line2.strip().split()[-1]
+                linelist.append(line1.strip() + '\t' + add + '\n')
+    
+    outfile = open(file1,'w')
+    for line in linelist:
+        outfile.write(line)
 
 if __name__ == "__main__":
     homedir = os.path.dirname(os.path.realpath(__file__))
@@ -18,18 +31,15 @@ if __name__ == "__main__":
     for bidirectional in files:
         print bidirectional
         a = pybt.BedTool(bidirectional).cut([0,1,2])
-        trackname = list()
+        a.saveas(savedir + bidirectional.split('/')[-1],trackline='Bidirectional')
         for folder in os.listdir(temp):
             print folder
+            a = pybt.BedTool(bidirectional).cut([0,1,2])
             file1 = temp + folder + '/fimo.bed'
-            trackname.append(file1.split('/')[-2].split('_')[0])
             b = pybt.BedTool(file1).sort()
-            try:
-                a = a.intersect(b,c=True)
-            except pybt.helpers.BEDToolsError:
-                print "error in: ", file1
-            
-        a.saveas(savedir + bidirectional.split('/')[-1],trackline='\t'.join(trackname))
+            a = a.intersect(b,c=True)
+            a.saveas(savedir + 'temp.bed',trackline=file1.split('/')[-2].split('_')[0])
+            append(savedir + bidirectional.split('/')[-1],savedir + 'temp.bed')
         
     files = ['/scratch/Users/joru1876/ENCFF001UWQ.bed','/scratch/Shares/dowell/EMG_out_files/human/SRR1552480-1_divergent_classifications.bed']
     motif = '/scratch/Shares/dowell/ENCODE/HOCOMOCODatabaseFIMO/FIMO_OUT_v10/'
