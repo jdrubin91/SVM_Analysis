@@ -15,7 +15,7 @@ def append(file1,file2):
     with open(file1) as F1:
         with open(file2)as F2:
             for line1 in F1:
-                line2 = F2.realine()
+                line2 = F2.readline()
                 add = line2.strip().split()[-1]
                 linelist.append(line1.strip() + '\t' + add + '\n')
     
