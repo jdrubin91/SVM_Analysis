@@ -31,7 +31,7 @@ if __name__ == "__main__":
     for bidirectional in files:
         print bidirectional
         a = pybt.BedTool(bidirectional).cut([0,1,2])
-        a.saveas(savedir + bidirectional.split('/')[-1],trackline='Bidirectional')
+        a.saveas(savedir + bidirectional.split('/')[-1],trackline='Chr\tStart\tStop')
         for folder in os.listdir(temp):
             print folder
             a = pybt.BedTool(bidirectional).cut([0,1,2])
@@ -49,6 +49,7 @@ if __name__ == "__main__":
     for bed in files:
         print bed
         a = pybt.BedTool(bed).cut([0,1,2])
+        a.saveas(savedir + bed.split('/')[-1],trackline='Chr\tStart\tStop')
         trackname = list()
         for file1 in temp:
             if 'eGFP' not in file1:
@@ -59,15 +60,16 @@ if __name__ == "__main__":
                         name = file1.split('.')[0]
                         trackname.append(name)
                         trackname.append(name + '_M')
+                        a = pybt.BedTool(bed).cut([0,1,2])
                         b = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
+                        a = a.intersect(b,c=True)
+                        a.saveas(savedir + 'temp.bed',trackline=name)
+                        append(savedir + bed.split('/')[-1],savedir + 'temp.bed')
+                        a = a = pybt.BedTool(bed).cut([0,1,2])
                         c = pybt.BedTool(motif + folder + '/fimo.bed').cut([0,1,2]).sort()
-                        try:
-                            a = a.intersect(b,c=True)
-                            a = a.intersect(c,c=True)
-                        except pybt.helpers.BEDToolsError:
-                            print "error in: ", file1
-                    
-        a.saveas(savedir + bed.split('/')[-1],trackline='\t'.join(trackname))
+                        a = a.intersect(c,c=True)
+                        a.saveas(savedir + 'temp.bed',trackline=name+'_M')
+                        append(savedir + bed.split('/')[-1],savedir + 'temp.bed')
                     
                     
             
