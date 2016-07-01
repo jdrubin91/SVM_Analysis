@@ -21,6 +21,7 @@ def run(temp,files,bidirectional,dnase):
         if 'eGFP' not in file1:
             a = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
             a.saveas(files+file1, trackline='Chr\tStart\tStop')
+            print files+file1
             a = pybt.BedTool(files + file1)
             b = pybt.BedTool(bidirectional).cut([0,1,2]).sort()
             a = a.intersect(b,wao=True)
