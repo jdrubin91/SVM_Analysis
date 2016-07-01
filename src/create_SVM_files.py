@@ -19,6 +19,7 @@ def append(file1,file2):
 def run(temp,files,bidirectional,dnase):
     for file1 in os.listdir(temp):
         if 'eGFP' not in file1:
+            file1 = file1.strip()
             a = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
             a.saveas(files+file1, trackline='Chr\tStart\tStop')
             print files+file1
