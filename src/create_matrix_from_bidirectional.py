@@ -30,7 +30,6 @@ def run():
             TFs = F.readline().strip().split()[3:]
             vectors = [[0.0]*len(TFs)] * len(TFs)
             for line in F:
-                print N
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
                 for i in range(len(line)):
@@ -39,12 +38,12 @@ def run():
                             if line[i] > 0 and line[j] > 0:
                                 vectors[i][j] += 1.0
                                 
-            
+        print "done parsing"
         vector = [[i/N for i in TF] for TF in vectors]
         vector = np.array(vectors)
         labels = [i for i in TFs if 'eGFP' not in i]
-        
         vectors.append(vector)
+        print "done with: ", file1
         
     # Generate random features and distance matrix.
     x = len(labels)
