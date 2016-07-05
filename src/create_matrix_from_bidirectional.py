@@ -35,6 +35,7 @@ def run():
             for line in F:
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
+                print len(line)
                 for index in indexes:
                     print index
                     line.pop(index)
