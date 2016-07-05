@@ -29,15 +29,14 @@ def run():
             N = 0.0
             TFs = F.readline().strip().split()[3:]
             indexes = [i for i in range(len(TFs)) if 'eGFP' in TFs[i]]
-            for index in indexes:
-                print TFs[index]
             TFs = [i for i in TFs if 'eGFP' not in i]
+            print TFs
             vectors = [[0.0]*(len(TFs)-len(indexes))] * (len(TFs)-len(indexes))
-            print indexes
             for line in F:
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
                 for index in indexes:
+                    print index
                     line.pop(index)
                 for i in range(len(line)):
                     for j in range(len(line)):
