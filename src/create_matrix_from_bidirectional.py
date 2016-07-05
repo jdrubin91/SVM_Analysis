@@ -30,7 +30,7 @@ def run():
             TFs = F.readline().strip().split()[3:]
             indexes = [i for i in range(len(TFs)) if 'eGFP' in TFs[i]]
             TFs = [i for i in TFs if 'eGFP' not in i]
-            vectors = [[0.0]*len(TFs)] * len(TFs)
+            vector = [[0.0]*len(TFs)] * len(TFs)
             for line in F:
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
@@ -41,11 +41,10 @@ def run():
                 for i in range(len(line)):
                     for j in range(len(line)):
                         if line[i] > 0 and line[j] > 0:
-                            vectors[i][j] += 1.0
+                            vector[i][j] += 1.0
                                 
         print "done parsing"
-        vector = [[i/N for i in TF] for TF in vectors]
-        vector = np.array(vector)
+        vector = [[i/N for i in TF] for TF in vector]
         labels = [i for i in TFs if 'eGFP' not in i]
         vectors.append(vector)
         print "done with: ", file1
