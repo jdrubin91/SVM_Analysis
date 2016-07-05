@@ -28,15 +28,18 @@ def run():
         with open(file1) as F:
             N = 0.0
             TFs = F.readline().strip().split()[3:]
-            vectors = [[0.0]*len(TFs)] * len(TFs)
+            indexes = [i for i in range(len(TFs)) if 'eGFP' in TFs[i]]
+            TFs = [i for i in TFs if 'eGFP' not in i]
+            vectors = [[0.0]*len(TFs)-len(indexes)] * len(TFs)-len(indexes)
             for line in F:
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
+                for index in indexes:
+                    line.pop(indexes)
                 for i in range(len(line)):
-                    if 'eGFP' not in TFs[i]:
-                        for j in range(len(line)):
-                            if line[i] > 0 and line[j] > 0:
-                                vectors[i][j] += 1.0
+                    for j in range(len(line)):
+                        if line[i] > 0 and line[j] > 0:
+                            vectors[i][j] += 1.0
                                 
         print "done parsing"
         vector = [[i/N for i in TF] for TF in vectors]
@@ -50,7 +53,10 @@ def run():
     D = scipy.zeros([x,x])
     for i in range(x):
         for j in range(x):
-            for k in range(x):                    
+            for k in range(x): 
+                print i,j,k
+                print vectors[1][i][k]
+                print vectors
                 D[i,j] += (vectors[1][i][k]/vectors[0][j][k])
     print D
     
@@ -83,7 +89,6 @@ def run():
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
     pylab.colorbar(im, cax=axcolor)
-    fig.show()
     fig.savefig(savedir + '_dendrogram.png')
 
 if __name__ == "__main__":
