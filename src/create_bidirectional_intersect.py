@@ -31,7 +31,7 @@ if __name__ == "__main__":
     for bidirectional in files:
         print bidirectional
         a = pybt.BedTool(bidirectional).cut([0,1,2])
-        a.saveas(savedir + bidirectional.split('/')[-1],trackline='Chr\tStart\tStop')
+        a.saveas(savedir + bidirectional.split('/')[-1] + '_motif.bed',trackline='Chr\tStart\tStop')
         for folder in os.listdir(temp):
             print folder
             a = pybt.BedTool(bidirectional).cut([0,1,2])
@@ -39,17 +39,35 @@ if __name__ == "__main__":
             b = pybt.BedTool(file1).sort()
             a = a.intersect(b,c=True)
             a.saveas(savedir + 'temp.bed',trackline=file1.split('/')[-2].split('_')[0])
-            append(savedir + bidirectional.split('/')[-1],savedir + 'temp.bed')
-        
+            append(savedir + bidirectional.split('/')[-1] + '_motif.bed',savedir + 'temp.bed')
+            
+            
     files = ['/scratch/Users/joru1876/ENCFF001UWQ.bed','/scratch/Shares/dowell/EMG_out_files/human/SRR1552480-1_divergent_classifications.bed']
     motif = '/scratch/Shares/dowell/ENCODE/HOCOMOCODatabaseFIMO/FIMO_OUT_v10/'
     temp = parent_dir(homedir) + '/temp/'
     savedir = '/scratch/Users/joru1876/files/'
     
+    
+    for bidirectional in files:
+        print bidirectional
+        a = pybt.BedTool(bidirectional).cut([0,1,2])
+        a.saveas(savedir + bidirectional.split('/')[-1] + '_ChIP.bed',trackline='Chr\tStart\tStop')
+        for file1 in os.listdir(temp):
+            print file1
+            a = pybt.BedTool(bidirectional).cut([0,1,2])
+            file1 = temp + file1
+            b = pybt.BedTool(file1).sort()
+            a = a.intersect(b,c=True)
+            a.saveas(savedir + 'temp.bed',trackline=file1.split('/')[-1])
+            append(savedir + bidirectional.split('/')[-1] + '_ChIP.bed', savedir + 'temp.bed')
+            
+        
+    
+    
     for bed in files:
         print bed
         a = pybt.BedTool(bed).cut([0,1,2])
-        a.saveas(savedir + bed.split('/')[-1],trackline='Chr\tStart\tStop')
+        a.saveas(savedir + bed.split('/')[-1] + '_both.bed',trackline='Chr\tStart\tStop')
         trackname = list()
         for file1 in os.listdir(temp):
             if 'eGFP' not in file1:
@@ -64,7 +82,7 @@ if __name__ == "__main__":
                         b = pybt.BedTool(temp + file1).cut([0,1,2]).sort()
                         a = a.intersect(b,c=True)
                         a.saveas(savedir + 'temp.bed',trackline=name)
-                        append(savedir + bed.split('/')[-1],savedir + 'temp.bed')
+                        append(savedir + bed.split('/')[-1] + '_both.bed',savedir + 'temp.bed')
                         a = a = pybt.BedTool(bed).cut([0,1,2])
                         c = pybt.BedTool(motif + folder + '/fimo.bed').cut([0,1,2]).sort()
                         a = a.intersect(c,c=True)
