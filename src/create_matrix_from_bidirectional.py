@@ -22,6 +22,7 @@ def run():
     files = [file1,file2]
     
     for file1 in files:
+        print file1
         with open(file1) as F:
             N = 0.0
             TFs = F.readline().strip().split()[3:]
@@ -31,6 +32,7 @@ def run():
                 line = [float(i) for i in line.strip().split()[3:]]
                 for i in range(len(line)):
                     if 'eGFP' not in TFs[i]:
+                        print TFs[i]
                         for j in range(len(line)):
                             if line[i] > 0 and line[j] > 0:
                                 vectors[i][j] += 1.0
