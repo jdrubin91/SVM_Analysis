@@ -29,6 +29,8 @@ def run():
             N = 0.0
             TFs = F.readline().strip().split()[3:]
             indexes = [i for i in range(len(TFs)) if 'eGFP' in TFs[i]]
+            for index in indexes:
+                print TFs[index]
             TFs = [i for i in TFs if 'eGFP' not in i]
             vectors = [[0.0]*(len(TFs)-len(indexes))] * (len(TFs)-len(indexes))
             print indexes
