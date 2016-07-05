@@ -36,10 +36,10 @@ def run():
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
                 print len(line)
+                i = 0
                 for index in indexes:
-                    print index
-                    print line[index]
-                    line.pop(index)
+                    line.pop(index-i)
+                    i += 1
                 for i in range(len(line)):
                     for j in range(len(line)):
                         if line[i] > 0 and line[j] > 0:
