@@ -54,7 +54,7 @@ if __name__ == "__main__":
         for file1 in os.listdir(temp):
             if 'eGFP' not in file1:
                 print file1
-                for folder in motif:
+                for folder in os.listdir(motif):
                     if folder.split('_')[0] == file1:
                         print folder
                         name = file1.split('.')[0]
@@ -69,7 +69,7 @@ if __name__ == "__main__":
                         c = pybt.BedTool(motif + folder + '/fimo.bed').cut([0,1,2]).sort()
                         a = a.intersect(c,c=True)
                         a.saveas(savedir + 'temp.bed',trackline=name+'_M')
-                        append(savedir + bed.split('/')[-1],savedir + 'temp.bed')
+                        append(savedir + bed.split('/')[-1]+'_both.bed',savedir + 'temp.bed')
                     
                     
             
