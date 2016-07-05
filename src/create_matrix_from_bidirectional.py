@@ -31,6 +31,7 @@ def run():
             indexes = [i for i in range(len(TFs)) if 'eGFP' in TFs[i]]
             TFs = [i for i in TFs if 'eGFP' not in i]
             vectors = [[0.0]*(len(TFs)-len(indexes))] * (len(TFs)-len(indexes))
+            print indexes
             for line in F:
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
