@@ -45,20 +45,18 @@ def run():
                                 
         print "done parsing"
         vector = [[i/N for i in TF] for TF in vectors]
-        vector = np.array(vectors)
+        vector = np.array(vector)
         labels = [i for i in TFs if 'eGFP' not in i]
         vectors.append(vector)
         print "done with: ", file1
-        
+    
+    print vectors
     # Generate random features and distance matrix.
     x = len(labels)
     D = scipy.zeros([x,x])
     for i in range(x):
         for j in range(x):
             for k in range(x): 
-                print i,j,k
-                print vectors[1][i][k]
-                print vectors
                 D[i,j] += (vectors[1][i][k]/vectors[0][j][k])
     print D
     
