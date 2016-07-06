@@ -44,7 +44,7 @@ if __name__ == "__main__":
         a = pybt.BedTool(bidirectional).cut([0,1,2])
         b = pybt.BedTool(tss).sort()
         a = a.intersect(b,c=True)
-        a.saveas(savedir + 'temp.bed',trackline=file1.split('/')[-2].split('_')[0])
+        a.saveas(savedir + 'temp.bed',trackline='TSS')
         append(savedir + bidirectional.split('/')[-1] + '_motif.bed',savedir + 'temp.bed')
             
     files = ['/scratch/Users/joru1876/ENCFF001UWQ.bed','/scratch/Shares/dowell/EMG_out_files/human/SRR1552480-1_divergent_classifications.bed']
@@ -68,7 +68,7 @@ if __name__ == "__main__":
         a = pybt.BedTool(bidirectional).cut([0,1,2])
         b = pybt.BedTool(tss).sort()
         a = a.intersect(b,c=True)
-        a.saveas(savedir + 'temp.bed',trackline=file1.split('/')[-1])
+        a.saveas(savedir + 'temp.bed',trackline='TSS')
         append(savedir + bidirectional.split('/')[-1] + '_ChIP.bed', savedir + 'temp.bed')
     
     
