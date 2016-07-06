@@ -56,7 +56,10 @@ def run():
     for i in range(x):
         for j in range(x):
             for k in range(x): 
-                D[i,j] += (vectors[1][i][k]/vectors[0][j][k])
+                if vectors[0][j][k] == 0:
+                    D[i,j] += 0
+                else:
+                    D[i,j] += (vectors[1][i][k]/vectors[0][j][k])
     print D
     
     
