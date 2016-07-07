@@ -49,38 +49,38 @@ def run():
         vectors.append(vector)
         print "done with: ", file1
 
-        x = len(labels)
-        print len(labels)
-        print len(vectors)
-        L = list()
-        for i in range(x):
-            L.append([])
-            for j in range(x):
-                if vectors[1][i][j] == 0 or vectors[0][i][j] == 0:
-                    L[i].append(0.0)    
-                else:
-                    L[i].append(vectors[1][i][j]/vectors[0][i][j])
-        
-        vectors = np.array(L)
-        print vectors
-        
-        fig, ax = plt.subplots()
-        heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=-2, vmax=2)
-        
-        
-    # put the major ticks at the middle of each cell
-        ax.set_xticks(np.arange(vectors.shape[0])+0.5, minor=False)
-        ax.set_yticks(np.arange(vectors.shape[1])+0.5, minor=False)
-        
-        # want a more natural, table-like display
-        ax.invert_yaxis()
-        ax.xaxis.tick_top()
-        
-        ax.set_xticklabels(labels, minor=False, fontsize=8)
-        ax.set_yticklabels(labels, minor=False, fontsize=8)
-        plt.xticks(rotation=90)
-        fig.set_size_inches(20, 15,forward=True)
-        plt.savefig(savedir + file1.split('/')[-1] + '.bidirectional_matrix.png')
+    x = len(labels)
+    print len(labels)
+    print len(vectors[0])
+    L = list()
+    for i in range(x):
+        L.append([])
+        for j in range(x):
+            if vectors[1][i][j] == 0 or vectors[0][i][j] == 0:
+                L[i].append(0.0)    
+            else:
+                L[i].append(vectors[1][i][j]/vectors[0][i][j])
+    
+    vectors = np.array(L)
+    print vectors
+    
+    fig, ax = plt.subplots()
+    heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=-2, vmax=2)
+    
+    
+# put the major ticks at the middle of each cell
+    ax.set_xticks(np.arange(vectors.shape[0])+0.5, minor=False)
+    ax.set_yticks(np.arange(vectors.shape[1])+0.5, minor=False)
+    
+    # want a more natural, table-like display
+    ax.invert_yaxis()
+    ax.xaxis.tick_top()
+    
+    ax.set_xticklabels(labels, minor=False, fontsize=8)
+    ax.set_yticklabels(labels, minor=False, fontsize=8)
+    plt.xticks(rotation=90)
+    fig.set_size_inches(20, 15,forward=True)
+    plt.savefig(savedir + file1.split('/')[-1] + '.bidirectional_matrix.png')
 
 if __name__ == "__main__":
     run()
