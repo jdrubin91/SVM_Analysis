@@ -50,18 +50,16 @@ def run():
         print "done with: ", file1
 
     x = len(labels)
-    print len(labels)
-    print len(vectors[0])
-    L = list()
+    L = np.zeros(x)
     for i in range(x):
         L.append([])
+        print vectors[0][i][0], vectors[1][i][0]
         for j in range(x):
             if vectors[1][i][j] == 0 or vectors[0][i][j] == 0:
                 L[i].append(0.0)    
             else:
                 L[i].append(vectors[1][i][j]/vectors[0][i][j])
-    
-    print vectors
+
     vectors = np.array(L)
     print vectors
     
