@@ -50,6 +50,8 @@ def run():
         print "done with: ", file1
 
         x = len(labels)
+        print len(labels)
+        print len(vectors)
         L = list()
         for i in range(x):
             L.append([])
