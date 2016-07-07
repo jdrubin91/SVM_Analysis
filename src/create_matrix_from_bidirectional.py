@@ -50,7 +50,7 @@ def run():
         print "done with: ", file1
 
     x = len(labels)
-    L = np.zeros(x)
+    L = list()
     for i in range(x):
         L.append([])
         print vectors[0][i][0], vectors[1][i][0]
