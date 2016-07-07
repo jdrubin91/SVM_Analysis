@@ -45,7 +45,7 @@ def run():
                                 
         print "done parsing"
         vector = [[i/N for i in TF] for TF in vector]
-        labels = [i for i in TFs if 'eGFP' not in i]
+        labels = [i.split('.')[0] for i in TFs if 'eGFP' not in i]
         vectors.append(vector)
         print "done with: ", file1
 
@@ -61,6 +61,7 @@ def run():
             else:
                 L[i].append(vectors[1][i][j]/vectors[0][i][j])
     
+    print vectors
     vectors = np.array(L)
     print vectors
     
@@ -80,7 +81,7 @@ def run():
     ax.set_yticklabels(labels, minor=False, fontsize=8)
     plt.xticks(rotation=90)
     fig.set_size_inches(20, 15,forward=True)
-    plt.savefig(savedir + file1.split('/')[-1] + '.bidirectional_matrix.png')
+    plt.savefig(savedir + 'bidirectional_matrix.png')
 
 if __name__ == "__main__":
     run()
