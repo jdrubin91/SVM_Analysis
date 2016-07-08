@@ -61,6 +61,15 @@ def run():
                 L[i].append(vectors[1][i][j]/vectors[0][i][j])
 
     vectors = np.array(L)
+    outfile = open(savedir+'dendrogram.txt','w')
+    for item in labels:
+        outfile.write(item + '\t')
+    for i in vectors:
+        outfile.write('\n')
+        for j in vectors:
+            outfile.write(str(vectors[i][j]) + '\t')
+    outfile.close()
+            
 #    d = np.zeros((vectors.shape[1],vectors.shape[1]))
 #    for i in range(vectors.shape[1]):
 #        for j in range(vectors.shape[1]):
