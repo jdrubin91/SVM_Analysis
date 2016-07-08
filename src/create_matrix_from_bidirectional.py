@@ -123,10 +123,9 @@ def run():
     im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.bwr,vmax=2,vmin=0)
     axmatrix.set_xticks([])
     #axmatrix.set_yticks([])
-    res = 20
-    axmatrix.set_yticks(np.arange(0,vectors.shape[0],res))
+    axmatrix.set_yticks(range(0,vectors.shape[0]))
     axmatrix.yaxis.tick_left()
-    axmatrix.set_yticklabels([",".join([labels[val] for val in idx1])])
+    axmatrix.set_yticklabels([labels[val] for val in idx1])
     
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
