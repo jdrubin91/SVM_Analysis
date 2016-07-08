@@ -30,18 +30,19 @@ def run():
             TFs = F.readline().strip().split()[3:]
             indexes = [i for i in range(len(TFs)) if 'eGFP' in TFs[i]]
             TFs = [i for i in TFs if 'eGFP' not in i]
-            vector = [[0.0]*len(TFs)] * len(TFs)
+            vector = np.zeros(shape=(len(TFs),len(TFs)))
             for line in F:
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
                 i = 0
-                for index in indexes:
-                    line.pop(index-i)
-                    i += 1
-                for i in range(len(line)):
-                    for j in range(len(line)):
-                        if line[i] > 0 and line[j] > 0:
-                            vector[i][j] += 1.0
+                if line[-1] > 0:
+                    for index in indexes:
+                        line.pop(index-i)
+                        i += 1
+                    for i in range(len(line)):
+                        for j in range(len(line)):
+                            if line[i] > 0 and line[j] > 0:
+                                vector[i][j] += 1.0
                                 
         print "done parsing"
         vector = [[i/N for i in TF] for TF in vector]
