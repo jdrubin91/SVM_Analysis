@@ -13,6 +13,7 @@ import math
 import scipy
 import pylab
 import scipy.cluster.hierarchy as sch
+from numpy.ma import masked_array
 
 def run():
     file1 = '/scratch/Users/joru1876/files/ENCFF001UWQ.bed_ChIP.bed'
@@ -107,6 +108,13 @@ def run():
     #ax1.set_xticks([])
     #ax1.set_yticks([])
     
+    v1a = masked_array(D,D<1)
+    v1b = masked_array(D,D>=1)
+    fig,ax = plt.subplots()
+    pa = ax.imshow(v1a,interpolation='nearest',cmap=plt.cm.Reds)
+    cba = plt.colorbar(pa,shrink=0.25)
+    pb = ax.imshow(v1b,interpolation='nearest',cmap=plt.cm.winter)
+    cbb = plt.colorbar(pb,shrink=0.25)
     # Compute and plot second dendrogram.
     ax2 = fig.add_axes([0.3,0.71,0.6,0.2])
     Y = sch.linkage(D, method='ward')
@@ -120,12 +128,12 @@ def run():
     idx2 = Z2['leaves']
     D = D[idx1,:]
     D = D[:,idx2]
-    im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.bwr,vmax=2,vmin=0)
+    #im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.bwr,vmax=2,vmin=0)
     axmatrix.set_xticks([])
     #axmatrix.set_yticks([])
     axmatrix.set_yticks(range(0,vectors.shape[0]))
     axmatrix.yaxis.tick_left()
-    axmatrix.set_yticklabels([labels[val] for val in idx1],fontsize=10)
+    axmatrix.set_yticklabels([labels[val] for val in idx1],minor=False,fontsize=8)
     
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
