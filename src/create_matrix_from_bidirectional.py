@@ -64,10 +64,10 @@ def run():
     outfile = open(savedir+'dendrogram.txt','w')
     for item in labels:
         outfile.write(item + '\t')
-    for i in vectors:
+    for i in range(len(vectors)):
         outfile.write('\n')
-        for j in vectors:
-            outfile.write(str(j) + '\t')
+        for j in range(len(vectors)):
+            outfile.write(str(vectors[i][j]) + '\t')
     outfile.close()
             
 #    d = np.zeros((vectors.shape[1],vectors.shape[1]))
@@ -123,10 +123,10 @@ def run():
     im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.bwr,vmax=2,vmin=0)
     axmatrix.set_xticks([])
     #axmatrix.set_yticks([])
-    res = 7
+    res = 20
     axmatrix.set_yticks(np.arange(0,vectors.shape[0],res))
     axmatrix.yaxis.tick_left()
-    axmatrix.set_yticklabels(",".join([labels[val] for val in idx1]))
+    axmatrix.set_yticklabels([",".join([labels[val] for val in idx1])])
     
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
