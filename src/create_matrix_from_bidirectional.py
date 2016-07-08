@@ -118,7 +118,7 @@ def run():
 
     # Compute and plot first dendrogram.
     D = vectors
-    fig = pylab.figure(figsize=(8,8))
+    fig = pylab.figure(figsize=(12,12))
     #ax1 = fig.add_axes([0.09,0.1,0.2,0.6])
     #Y = sch.linkage(D, method='ward')
     #Z1 = sch.dendrogram(Y, orientation='right')
@@ -132,19 +132,19 @@ def run():
     ax2.set_xticks([])
     ax2.set_yticks([])
     c = mcolors.ColorConverter().to_rgb
-    rvb = make_colormap([c('blue'), c('white'), 0.1, c('white'), c('red'), 1, c('red')])
+    rvb = make_colormap([c('blue'), c('white'), 0.6, c('white'), c('red'), 1, c('red')])
     # Plot distance matrix.
     axmatrix = fig.add_axes([0.3,0.1,0.6,0.6])
     idx1 = Z2['leaves']
     idx2 = Z2['leaves']
     D = D[idx1,:]
     D = D[:,idx2]
-    im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=rvb,vmax=10,vmin=0)
+    im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=rvb,vmax=6,vmin=0)
     axmatrix.set_xticks([])
     #axmatrix.set_yticks([])
     axmatrix.set_yticks(range(0,vectors.shape[0]))
     axmatrix.yaxis.tick_left()
-    axmatrix.set_yticklabels([labels[val] for val in idx1],minor=False,fontsize=4)
+    axmatrix.set_yticklabels([labels[val] for val in idx1],minor=False,fontsize=10)
     
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
