@@ -46,7 +46,7 @@ def run():
                                 
         print "done parsing"
         vector = [[i/N for i in TF] for TF in vector]
-        labels = [i.split('.')[0] for i in TFs if 'eGFP' not in i]
+        labels = [i.split('.')[0] for i in TFs if 'TSS' not in i]
         vectors.append(vector)
         print "done with: ", file1
 
