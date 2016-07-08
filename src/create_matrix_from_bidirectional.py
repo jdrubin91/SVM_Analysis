@@ -137,7 +137,7 @@ def run():
     
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
-    pylab.colorbar(im, cax=axcolor)
+    #pylab.colorbar(im, cax=axcolor)
     fig.show()
     fig.savefig(savedir + 'bidirectional_dendrogram.png')
 
