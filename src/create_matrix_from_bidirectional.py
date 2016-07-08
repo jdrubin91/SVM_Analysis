@@ -68,7 +68,7 @@ def run():
     y=linkage(d,method="average")
     z=dendrogram(y,no_plot=True)
     idx=z["leaves"]
-    vectors=vectors[:,idx]    
+    vectors=vectors[idx,idx]    
     
     
     fig, ax = plt.subplots()
