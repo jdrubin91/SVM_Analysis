@@ -61,33 +61,65 @@ def run():
                 L[i].append(vectors[1][i][j]/vectors[0][i][j])
 
     vectors = np.array(L)
-    d = np.zeros((vectors.shape[1],vectors.shape[1]))
-    for i in range(vectors.shape[1]):
-        for j in range(vectors.shape[1]):
-            d[i,j] = np.sum(np.abs(vectors[:,i]-vectors[:,j]))
-    y=linkage(d,method="average")
-    z=dendrogram(y,no_plot=True)
-    idx=z["leaves"]
-    vectors=vectors[idx,idx]    
+#    d = np.zeros((vectors.shape[1],vectors.shape[1]))
+#    for i in range(vectors.shape[1]):
+#        for j in range(vectors.shape[1]):
+#            d[i,j] = np.sum(np.abs(vectors[:,i]-vectors[:,j]))
+#    y=linkage(d,method="average")
+#    z=dendrogram(y,no_plot=True)
+#    idx=z["leaves"]
+#    vectors=vectors[:,idx]    
+#    
+#    
+#    fig, ax = plt.subplots()
+#    heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=-2, vmax=2)
+#    
+#    
+## put the major ticks at the middle of each cell
+#    ax.set_xticks(np.arange(vectors.shape[0])+0.5, minor=False)
+#    ax.set_yticks(np.arange(vectors.shape[1])+0.5, minor=False)
+#    
+#    # want a more natural, table-like display
+#    ax.invert_yaxis()
+#    ax.xaxis.tick_top()
+#    
+#    ax.set_xticklabels(labels, minor=False, fontsize=8)
+#    ax.set_yticklabels(labels, minor=False, fontsize=8)
+#    plt.xticks(rotation=90)
+#    fig.set_size_inches(20, 15,forward=True)
+#    plt.savefig(savedir + 'bidirectional_matrix.png')
+
+    # Compute and plot first dendrogram.
+    D = vectors
+    fig = pylab.figure(figsize=(8,8))
+    ax1 = fig.add_axes([0.09,0.1,0.2,0.6])
+    Y = sch.linkage(D, method='centroid')
+    Z1 = sch.dendrogram(Y, orientation='right')
+    ax1.set_xticks([])
+    ax1.set_yticks([])
     
+    # Compute and plot second dendrogram.
+    ax2 = fig.add_axes([0.3,0.71,0.6,0.2])
+    Y = sch.linkage(D, method='single')
+    Z2 = sch.dendrogram(Y)
+    ax2.set_xticks([])
+    ax2.set_yticks([])
     
-    fig, ax = plt.subplots()
-    heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=-2, vmax=2)
+    # Plot distance matrix.
+    axmatrix = fig.add_axes([0.3,0.1,0.6,0.6])
+    idx1 = Z1['leaves']
+    idx2 = Z2['leaves']
+    D = D[idx1,:]
+    D = D[:,idx2]
+    im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.YlGnBu)
+    axmatrix.set_xticks([])
+    axmatrix.set_yticks([])
     
-    
-# put the major ticks at the middle of each cell
-    ax.set_xticks(np.arange(vectors.shape[0])+0.5, minor=False)
-    ax.set_yticks(np.arange(vectors.shape[1])+0.5, minor=False)
-    
-    # want a more natural, table-like display
-    ax.invert_yaxis()
-    ax.xaxis.tick_top()
-    
-    ax.set_xticklabels(labels, minor=False, fontsize=8)
-    ax.set_yticklabels(labels, minor=False, fontsize=8)
-    plt.xticks(rotation=90)
-    fig.set_size_inches(20, 15,forward=True)
-    plt.savefig(savedir + 'bidirectional_matrix.png')
+    # Plot colorbar.
+    axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
+    pylab.colorbar(im, cax=axcolor)
+    fig.show()
+    fig.savefig(savedir + 'bidirectional_dendrogram.png')
 
 if __name__ == "__main__":
     run()
