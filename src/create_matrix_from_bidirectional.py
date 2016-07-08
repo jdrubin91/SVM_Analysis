@@ -14,6 +14,23 @@ import scipy
 import pylab
 import scipy.cluster.hierarchy as sch
 from numpy.ma import masked_array
+import matplotlib.colors as mcolors
+
+def make_colormap(seq):
+    """Return a LinearSegmentedColormap
+    seq: a sequence of floats and RGB-tuples. The floats should be increasing
+    and in the interval (0,1).
+    """
+    seq = [(None,) * 3, 0.0] + list(seq) + [1.0, (None,) * 3]
+    cdict = {'red': [], 'green': [], 'blue': []}
+    for i, item in enumerate(seq):
+        if isinstance(item, float):
+            r1, g1, b1 = seq[i - 1]
+            r2, g2, b2 = seq[i + 1]
+            cdict['red'].append([item, r1, r2])
+            cdict['green'].append([item, g1, g2])
+            cdict['blue'].append([item, b1, b2])
+    return mcolors.LinearSegmentedColormap('CustomMap', cdict)
 
 def run():
     file1 = '/scratch/Users/joru1876/files/ENCFF001UWQ.bed_ChIP.bed'
@@ -108,27 +125,21 @@ def run():
     #ax1.set_xticks([])
     #ax1.set_yticks([])
     
-    v1a = masked_array(D,D<1)
-    v1b = masked_array(D,D>=1)
-    fig,ax = plt.subplots()
-    pa = ax.imshow(v1a,interpolation='nearest',cmap=plt.cm.Reds)
-    cba = plt.colorbar(pa,shrink=0.25)
-    pb = ax.imshow(v1b,interpolation='nearest',cmap=plt.cm.winter)
-    cbb = plt.colorbar(pb,shrink=0.25)
     # Compute and plot second dendrogram.
     ax2 = fig.add_axes([0.3,0.71,0.6,0.2])
     Y = sch.linkage(D, method='ward')
     Z2 = sch.dendrogram(Y)
     ax2.set_xticks([])
     ax2.set_yticks([])
-    #
+    c = mcolors.ColorConverter().to_rgb
+    rvb = make_colormap([c('blue'), c('white'), 1.0, c('white'), c('red'), 10, c('red')])
     # Plot distance matrix.
     axmatrix = fig.add_axes([0.3,0.1,0.6,0.6])
     idx1 = Z2['leaves']
     idx2 = Z2['leaves']
     D = D[idx1,:]
     D = D[:,idx2]
-    #im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.bwr,vmax=2,vmin=0)
+    im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=rvb,vmax=2,vmin=0)
     axmatrix.set_xticks([])
     #axmatrix.set_yticks([])
     axmatrix.set_yticks(range(0,vectors.shape[0]))
@@ -137,7 +148,7 @@ def run():
     
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
-    #pylab.colorbar(im, cax=axcolor)
+    pylab.colorbar(im, cax=axcolor)
     fig.show()
     fig.savefig(savedir + 'bidirectional_dendrogram.png')
 
