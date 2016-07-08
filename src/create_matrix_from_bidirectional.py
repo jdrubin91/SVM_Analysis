@@ -67,7 +67,7 @@ def run():
     for i in vectors:
         outfile.write('\n')
         for j in vectors:
-            outfile.write(str(vectors[i][j]) + '\t')
+            outfile.write(str(j) + '\t')
     outfile.close()
             
 #    d = np.zeros((vectors.shape[1],vectors.shape[1]))
