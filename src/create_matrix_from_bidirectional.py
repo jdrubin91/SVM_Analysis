@@ -93,14 +93,14 @@ def run():
     D = vectors
     fig = pylab.figure(figsize=(8,8))
     ax1 = fig.add_axes([0.09,0.1,0.2,0.6])
-    Y = sch.linkage(D, method='centroid')
+    Y = sch.linkage(D, method='ward')
     Z1 = sch.dendrogram(Y, orientation='right')
     ax1.set_xticks([])
     ax1.set_yticks([])
     
     # Compute and plot second dendrogram.
     ax2 = fig.add_axes([0.3,0.71,0.6,0.2])
-    Y = sch.linkage(D, method='single')
+    Y = sch.linkage(D, method='ward')
     Z2 = sch.dendrogram(Y)
     ax2.set_xticks([])
     ax2.set_yticks([])
