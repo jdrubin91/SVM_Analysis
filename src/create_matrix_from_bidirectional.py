@@ -30,7 +30,7 @@ def run():
             TFs = F.readline().strip().split()[3:]
             indexes = [i for i in range(len(TFs)) if 'eGFP' in TFs[i]]
             TFs = [i for i in TFs if 'eGFP' not in i]
-            vector = np.zeros(shape=(len(TFs-1),len(TFs-1)))
+            vector = np.zeros(shape=(len(TFs)-1,len(TFs)-1))
             for line in F:
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
