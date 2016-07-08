@@ -144,7 +144,7 @@ def run():
     #axmatrix.set_yticks([])
     axmatrix.set_yticks(range(0,vectors.shape[0]))
     axmatrix.yaxis.tick_left()
-    axmatrix.set_yticklabels([labels[val] for val in idx1],minor=False,fontsize=10)
+    axmatrix.set_yticklabels([labels[val] for val in idx1],minor=False,fontsize=8)
     
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
