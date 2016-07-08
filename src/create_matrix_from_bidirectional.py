@@ -99,12 +99,12 @@ def run():
     ax1.set_yticks([])
     
     # Compute and plot second dendrogram.
-    ax2 = fig.add_axes([0.3,0.71,0.6,0.2])
+    #ax2 = fig.add_axes([0.3,0.71,0.6,0.2])
     Y = sch.linkage(D, method='ward')
     Z2 = sch.dendrogram(Y)
-    ax2.set_xticks([])
-    ax2.set_yticks([])
-    
+    #ax2.set_xticks([])
+    #ax2.set_yticks([])
+    #
     # Plot distance matrix.
     axmatrix = fig.add_axes([0.3,0.1,0.6,0.6])
     idx1 = Z1['leaves']
