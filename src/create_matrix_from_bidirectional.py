@@ -132,7 +132,7 @@ def run():
     ax2.set_xticks([])
     ax2.set_yticks([])
     c = mcolors.ColorConverter().to_rgb
-    rvb = make_colormap([c('blue'), c('white'), 0.6, c('white'), c('red'), 1, c('red')])
+    rvb = make_colormap([c('blue'), c('white'), 0.167, c('white'), c('red'), 1, c('red')])
     # Plot distance matrix.
     axmatrix = fig.add_axes([0.3,0.1,0.6,0.6])
     idx1 = Z2['leaves']
