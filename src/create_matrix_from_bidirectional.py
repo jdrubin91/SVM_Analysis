@@ -111,7 +111,8 @@ def run():
     idx2 = Z2['leaves']
     D = D[idx1,:]
     D = D[:,idx2]
-    im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.YlGnBu,vmax=2,vmin=0)
+    axmatrix.set_ylabels(",".join([labels[val] for val in idx1]))
+    im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.bwr,vmax=2,vmin=0)
     axmatrix.set_xticks([])
     axmatrix.set_yticks([])
     
