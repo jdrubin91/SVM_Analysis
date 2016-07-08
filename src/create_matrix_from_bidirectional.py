@@ -93,8 +93,8 @@ def run():
     D = vectors
     fig = pylab.figure(figsize=(8,8))
     #ax1 = fig.add_axes([0.09,0.1,0.2,0.6])
-    Y = sch.linkage(D, method='ward')
-    Z1 = sch.dendrogram(Y, orientation='right')
+    #Y = sch.linkage(D, method='ward')
+    #Z1 = sch.dendrogram(Y, orientation='right')
     #ax1.set_xticks([])
     #ax1.set_yticks([])
     
@@ -107,7 +107,7 @@ def run():
     #
     # Plot distance matrix.
     axmatrix = fig.add_axes([0.3,0.1,0.6,0.6])
-    idx1 = Z1['leaves']
+    idx1 = Z2['leaves']
     idx2 = Z2['leaves']
     D = D[idx1,:]
     D = D[:,idx2]
