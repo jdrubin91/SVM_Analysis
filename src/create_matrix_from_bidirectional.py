@@ -54,7 +54,6 @@ def run():
     L = list()
     for i in range(x):
         L.append([])
-        print vectors[0][i][0], vectors[1][i][0]
         for j in range(x):
             if vectors[1][i][j] == 0 or vectors[0][i][j] == 0:
                 L[i].append(0.0)    
@@ -63,7 +62,6 @@ def run():
 
     vectors = np.array(L)
     d = np.zeros((vectors.shape[1],vectors.shape[1]))
-    print d.shape
     for i in range(vectors.shape[1]):
         for j in range(vectors.shape[1]):
             d[i,j] = np.sum(np.abs(vectors[:,i]-vectors[:,j]))
