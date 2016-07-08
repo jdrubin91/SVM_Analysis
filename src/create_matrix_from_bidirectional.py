@@ -123,6 +123,8 @@ def run():
     im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.bwr,vmax=2,vmin=0)
     axmatrix.set_xticks([])
     #axmatrix.set_yticks([])
+    res = 7
+    axmatrix.set_yticks(np.arange(0,vectors.shape[0],res))
     axmatrix.yaxis.tick_left()
     axmatrix.set_yticklabels(",".join([labels[val] for val in idx1]))
     
