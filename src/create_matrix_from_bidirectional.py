@@ -111,10 +111,10 @@ def run():
     idx2 = Z2['leaves']
     D = D[idx1,:]
     D = D[:,idx2]
-    axmatrix.set_yticklabels(",".join([labels[val] for val in idx1]))
     im = axmatrix.matshow(D, aspect='auto', origin='lower', cmap=pylab.cm.bwr,vmax=2,vmin=0)
     axmatrix.set_xticks([])
     axmatrix.set_yticks([])
+    axmatrix.set_yticklabels(",".join([labels[val] for val in idx1]))
     
     # Plot colorbar.
     axcolor = fig.add_axes([0.91,0.1,0.02,0.6])
