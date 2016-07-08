@@ -35,7 +35,7 @@ def run():
                 N += 1.0
                 line = [float(i) for i in line.strip().split()[3:]]
                 i = 0
-                if line[-1] > 0:
+                if line[-1] == 0:
                     for index in indexes:
                         line.pop(index-i)
                         i += 1
