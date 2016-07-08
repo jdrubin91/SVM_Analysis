@@ -62,7 +62,16 @@ def run():
                 L[i].append(vectors[1][i][j]/vectors[0][i][j])
 
     vectors = np.array(L)
-    print vectors
+    d = np.zeros((vectors.shape[1],vectors.shape[1]))
+    print d.shape
+    for i in range(vectors.shape[1]):
+        for j in range(vectors.shape[1]):
+            d[i,j] = np.sum(np.abs(vectors[:,i]-vectors[:,j]))
+    y=linkage(d,method="average")
+    z=dendrogram(y,no_plot=True)
+    idx=z["leaves"]
+    vectors=vectors[:,idx]    
+    
     
     fig, ax = plt.subplots()
     heatmap = ax.pcolor(vectors, cmap=plt.cm.bwr, vmin=-2, vmax=2)
